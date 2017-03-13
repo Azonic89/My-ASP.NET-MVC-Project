@@ -22,7 +22,7 @@ build:
    
 environment:
   COVERALLS_REPO_TOKEN:
-    secure: GJDQkTLvUCgJPPzmEMa0g1BuJMhUTJW64
+    secure: YpDjDoahkXsQK8Q5YJjXOso1ZPO5AcZQZ
     
     
 after_test: 
