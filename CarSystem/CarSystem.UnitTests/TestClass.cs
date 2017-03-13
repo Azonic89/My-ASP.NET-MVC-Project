@@ -16,5 +16,11 @@ namespace CarSystem.UnitTests
             // TODO: Add your test code here
             Assert.Pass("Your first passing test");
         }
+
+        public void TestMethod2()
+        {
+            // TODO: Add your test code here
+            Assert.Pass("Your first passing test");
+        }
     }
 }
