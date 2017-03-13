@@ -62,6 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CarSystemDbContext.cs" />
+    <Compile Include="Migrations\201703131104247_InitialCreate.cs" />
+    <Compile Include="Migrations\201703131104247_InitialCreate.Designer.cs">
+      <DependentUpon>201703131104247_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +78,11 @@
       <Project>{85166176-7660-4340-a955-b930601082fa}</Project>
       <Name>CarSystem.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703131104247_InitialCreate.resx">
+      <DependentUpon>201703131104247_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
