@@ -21,6 +21,7 @@ build:
    
    
 environment:
+ global:
   COVERALLS_REPO_TOKEN:
     secure: YpDjDoahkXsQK8Q5YJjXOso1ZPO5AcZQZ
     
