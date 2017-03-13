@@ -18,6 +18,11 @@ build:
    # on_build_success: true
    # on_build_failure: true
    # on_build_status_changed: true
+   
+   
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: X8MUeHD9WYL7QbtokIUW1ZfSRtic5m5i/672Ng3DbXch+YCc6TT58InYjIow91K2
     
     
 after_test: 
