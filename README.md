@@ -13,7 +13,7 @@
 
 <h1 align="center">ASP.NET MVC Course Project</h1>
 
-[Description](https://github.com/TelerikAcademy/ASP.NET-MVC/tree/master/resources/Final%20Project/2017/README.MD)
+[Description](https://github.com/TelerikAcademy/ASP.NET-MVC/tree/master/resources/Final%20Project/2017/README.md)
 
 ###:mortar_board:Member of One!!!
 | Name              | Academy Username      	|
