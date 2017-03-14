@@ -250,8 +250,3 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
-
-# Cusstom
-
-# change Envoirment do not affect CI and integration tests can be run with diferent connection strings 
-# CarSystem/CarSystem.UnitTests/App.config

@@ -24,10 +24,10 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>&quot;.\..\CarSystem-build\CarSystem\packages\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe&quot; /config:Release &quot;.\..\CarSystem-build\CarSystem\CarSystem.UnitTests\bin\Release\CarSystem.UnitTests.dll&quot;  --result=junit-results.xml;format=nunit2</command>
+      <command>&quot;.\..\CarSystem-build\CarSystem\packages\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe&quot; /config:Release &quot;.\..\CarSystem-build\CarSystem\Tests\CarSystem.Data.Tests\bin\Release\CarSystem.Data.Tests.dll&quot;  --result=junit-results.xml;format=nunit2</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>&quot;.\..\CarSystem-build\CarSystem\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe&quot; -register:path64 -filter:&quot;+[*]*&quot; -target:&quot;.\..\CarSystem-build\CarSystem\packages\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe&quot; -targetargs:&quot;/domain:single \&quot;.\..\CarSystem-build\CarSystem\CarSystem.UnitTests\bin\Release\CarSystem.UnitTests.dll&quot; -output:open-cover.xml</command>
+      <command>&quot;.\..\CarSystem-build\CarSystem\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe&quot; -register:path64 -filter:&quot;+[*]*&quot; -target:&quot;.\..\CarSystem-build\CarSystem\packages\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe&quot; -targetargs:&quot;/domain:single \&quot;.\..\CarSystem-build\CarSystem\Tests\CarSystem.Data.Tests\bin\Release\CarSystem.Data.Tests.dll&quot; -output:open-cover.xml</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>&quot;.\..\CarSystem-build\CarSystem\packages\OpenCoverToCoberturaConverter.0.2.6.0\tools\OpenCoverToCoberturaConverter.exe&quot; -input:open-cover.xml -output:cobertura-result.xml -sources:&quot;.\&quot;</command>
