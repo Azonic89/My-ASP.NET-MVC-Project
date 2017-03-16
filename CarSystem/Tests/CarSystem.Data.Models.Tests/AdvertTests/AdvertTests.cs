@@ -131,6 +131,32 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
+        public void Price_ShouldHaveRequiredAttribute()
+        {
+            // Arrange
+            var priceProp = typeof(Advert).GetProperty("Price");
+
+            // Act
+            var requiredAttribute = priceProp.GetCustomAttributes(typeof(RequiredAttribute), true)
+                .Cast<RequiredAttribute>()
+                .FirstOrDefault();
+
+            // Assert
+            Assert.That(requiredAttribute, Is.Not.Null);
+        }
+
+        [TestCase(14000.00)]
+        [TestCase(4329.00)]
+        public void Price_ShouldSetDataCorreclty(decimal testPrice)
+        {
+            // Arrange & Act
+            var advert = new Advert { Price = testPrice };
+
+            // Assert
+            Assert.AreEqual(testPrice, advert.Price);
+        }
+
+        [Test]
         public void Power_ShouldHaveRequiredAttribute()
         {
             // Arrange
