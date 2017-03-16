@@ -12,7 +12,7 @@ using IUser = CarSystem.Data.Models.Contracts.IUser;
 
 namespace CarSystem.Data.Models
 {
-    public class User : IdentityUser, IUser
+    public class User : IdentityUser
     {
         private ICollection<Advert> adverts;
 
