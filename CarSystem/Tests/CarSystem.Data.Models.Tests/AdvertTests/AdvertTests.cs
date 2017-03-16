@@ -305,15 +305,16 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
             Assert.AreEqual(advert.UserId, testUserId);
         }
 
-        //[TestCase("chuk@abv.bg")]
-        //[TestCase("tuturutka@yahoo.com")]
-        //public void User_ShouldGetAndSetDataCorreclty(string testUserEmail)
-        //{
-        //    var user = new User { Email = testUserEmail };
+        [TestCase("chuk@abv.bg")]
+        [TestCase("tuturutka@yahoo.com")]
+        public void User_ShouldGetAndSetDataCorreclty(string testUserEmail)
+        {
+            // Arrange & Act
+            var user = new User { Email = testUserEmail };
+            var advert = new Advert { User = user };
 
-        //    var advert = new Advert { User = user };
-
-        //    Assert.AreEqual(advert.User.Email, testUserEmail);
-        //}
+            // Assert
+            Assert.AreEqual(advert.User.Email, testUserEmail);
+        }
     }
 }
