@@ -57,13 +57,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Advert.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="City.cs" />
+    <Compile Include="Contracts\IAdvert.cs" />
+    <Compile Include="Contracts\ICategory.cs" />
+    <Compile Include="Contracts\ICity.cs" />
+    <Compile Include="Contracts\IManufacturer.cs" />
+    <Compile Include="Contracts\IUser.cs" />
+    <Compile Include="Contracts\IVehicleModel.cs" />
+    <Compile Include="Manufacturer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="VehicleModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\CarSystem.ValidationConstants\CarSystem.ValidationConstants.csproj">
+      <Project>{9d0adbac-949b-452b-af41-8cfcc54b7d6e}</Project>
+      <Name>CarSystem.ValidationConstants</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
