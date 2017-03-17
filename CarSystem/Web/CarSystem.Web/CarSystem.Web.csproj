@@ -261,6 +261,10 @@
       <Project>{7ec1337a-faac-4d1f-827a-a3d179cb8880}</Project>
       <Name>CarSystem.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CarSystem.Web.Infrastucture\CarSystem.Web.Infrastucture.csproj">
+      <Project>{6bc9dca7-7eb3-4412-a7c3-28e0d1c7a0a9}</Project>
+      <Name>CarSystem.Web.Infrastucture</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

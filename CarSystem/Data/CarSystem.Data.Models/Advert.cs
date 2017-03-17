@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 using CarSystem.Data.Models.Contracts;
@@ -8,6 +9,13 @@ namespace CarSystem.Data.Models
 {
     public class Advert : IAdvert
     {
+        private ICollection<AdvertImage> advertImages;
+
+        public Advert()
+        {
+            this.advertImages = new HashSet<AdvertImage>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -49,5 +57,11 @@ namespace CarSystem.Data.Models
         [MinLength(ModelsValidationConstants.AdvertDescriptionMinLength)]
         [MaxLength(ModelsValidationConstants.AdvertDescriptionMaxLength)]
         public string Description { get; set; }
+
+        public virtual ICollection<AdvertImage> AdvertImages
+        {
+            get { return this.advertImages; }
+            set { this.advertImages = value; }
+        }
     }
 }
