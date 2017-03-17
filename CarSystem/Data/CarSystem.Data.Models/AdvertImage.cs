@@ -15,6 +15,6 @@ namespace CarSystem.Data.Models
         public int AdvertImageId { get; set; }
 
         [ForeignKey("AdvertImageId")]
-        public virtual AdvertImage Image { get; set; }
+        public virtual Advert Advert { get; set; }
     }
 }
