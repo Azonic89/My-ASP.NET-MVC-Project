@@ -1,11 +1,8 @@
+using System.Data.Entity.Migrations;
+
 namespace CarSystem.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    public sealed class Configuration : DbMigrationsConfiguration<CarSystem.Data.CarSystemDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<CarSystemDbContext>
     {
         public Configuration()
         {
@@ -13,7 +10,7 @@ namespace CarSystem.Data.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(CarSystem.Data.CarSystemDbContext context)
+        protected override void Seed(CarSystemDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
