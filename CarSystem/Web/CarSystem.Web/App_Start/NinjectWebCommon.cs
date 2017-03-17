@@ -1,3 +1,5 @@
+using CarSystem.Web.App_Start.NinjecModuleBindings;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(CarSystem.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(CarSystem.Web.App_Start.NinjectWebCommon), "Stop")]
 
@@ -61,6 +63,7 @@ namespace CarSystem.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Load(new DataBindingsModule());
         }        
     }
 }
