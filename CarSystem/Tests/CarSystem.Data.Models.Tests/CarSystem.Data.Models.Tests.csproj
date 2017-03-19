@@ -55,6 +55,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvertImageTests\AdvertImageTests.cs" />
     <Compile Include="AdvertTests\AdvertTests.cs" />
     <Compile Include="CategoryTests\CategoryTests.cs" />
     <Compile Include="CityTests\CityTests.cs" />

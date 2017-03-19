@@ -13,7 +13,7 @@ namespace CarSystem.Data.Models.Tests.CategoryTests
     public class CategoryTests
     {
         [Test]
-        public void Constructor_ShouldHaveParameterlessConstructor()
+        public void Constructor_Should_HaveParameterlessConstructor()
         {
             // Arrange & Act
             var category = new Category();
@@ -23,7 +23,7 @@ namespace CarSystem.Data.Models.Tests.CategoryTests
         }
 
         [Test]
-        public void Constructor_ShouldInitializeVehicleModelsCollectionCorrectly()
+        public void Constructor_Should_InitializeVehicleModelsCollectionCorrectly()
         {
             // Arrange & Act
             var category = new Category();
@@ -34,7 +34,7 @@ namespace CarSystem.Data.Models.Tests.CategoryTests
         }
 
         [Test]
-        public void Id_ShouldHaveKeyAttribute()
+        public void Id_Should_HaveKeyAttribute()
         {
             // Arrange
             var idProperty = typeof(Category).GetProperty("Id");
@@ -50,7 +50,7 @@ namespace CarSystem.Data.Models.Tests.CategoryTests
 
         [TestCase(1)]
         [TestCase(2)]
-        public void Id_ShouldGetAndSetDataCorrectly(int testId)
+        public void Id_Should_GetAndSetDataCorrectly(int testId)
         {
             // Arrange & Act
             var category = new Category() { Id = testId };
@@ -60,7 +60,7 @@ namespace CarSystem.Data.Models.Tests.CategoryTests
         }
 
         [Test]
-        public void Name_ShouldHaveRequiredAttribute()
+        public void Name_Should_HaveRequiredAttribute()
         {
             // Arrange
             var nameProperty = typeof(Category).GetProperty("Name");
@@ -75,7 +75,7 @@ namespace CarSystem.Data.Models.Tests.CategoryTests
         }
 
         [Test]
-        public void Name_ShouldHaveUniqueAttribute()
+        public void Name_Should_HaveUniqueAttribute()
         {
             // Arrange
             var nameProperty = typeof(Category).GetProperty("Name");
@@ -91,7 +91,7 @@ namespace CarSystem.Data.Models.Tests.CategoryTests
         }
 
         [Test]
-        public void Name_ShouldHaveCorrectMinLength()
+        public void Name_Should_HaveCorrectMinLength()
         {
             // Arrange
             var nameProperty = typeof(Category).GetProperty("Name");
@@ -106,7 +106,7 @@ namespace CarSystem.Data.Models.Tests.CategoryTests
         }
 
         [Test]
-        public void Name_ShouldHaveCorrectMaxLength()
+        public void Name_Should_HaveCorrectMaxLength()
         {
             // Arrange
             var nameProperty = typeof(Category).GetProperty("Name");
@@ -122,7 +122,7 @@ namespace CarSystem.Data.Models.Tests.CategoryTests
 
         [TestCase("Car")]
         [TestCase("Bus")]
-        public void Name_ShouldGetAndSetDataCorrectly(string testName)
+        public void Name_Should_GetAndSetDataCorrectly(string testName)
         {
             // Arrange & Act
             var category = new Category() { Name = testName };
@@ -133,7 +133,7 @@ namespace CarSystem.Data.Models.Tests.CategoryTests
 
         [TestCase(123)]
         [TestCase(12)]
-        public void VehicleModelsCollection_ShouldGetAndSetDataCorrectly(int testId)
+        public void VehicleModelsCollection_Should_GetAndSetDataCorrectly(int testId)
         {
             // Arrange & Act
             var vehicleModel = new VehicleModel() { Id = testId };

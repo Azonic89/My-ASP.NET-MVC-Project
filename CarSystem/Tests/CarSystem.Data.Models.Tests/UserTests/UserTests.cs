@@ -1,10 +1,9 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using NUnit.Framework;
+
 using CarSystem.ValidationConstants;
 
 namespace CarSystem.Data.Models.Tests.UserTests
@@ -13,7 +12,7 @@ namespace CarSystem.Data.Models.Tests.UserTests
     public class UserTests
     {
         [Test]
-        public void Constructor_ShouldHaveParametlessConstructor()
+        public void Constructor_Should_HaveParametlessConstructor()
         {
             // Arrange & Act
             var user = new User();
@@ -23,7 +22,7 @@ namespace CarSystem.Data.Models.Tests.UserTests
         }
 
         [Test]
-        public void Constructor_ShouldInitializeAdvertCollectionCorreclty()
+        public void Constructor_Should_InitializeAdvertCollectionCorreclty()
         {
             // Arrange & Act
             var user = new User();
@@ -34,7 +33,7 @@ namespace CarSystem.Data.Models.Tests.UserTests
         }
 
         [Test]
-        public void FirstName_ShouldHaveTheCorrectMinLength()
+        public void FirstName_Should_HaveTheCorrectMinLength()
         {
             // Arrange
             var firstNameProp = typeof(User).GetProperty("FirstName");
@@ -49,7 +48,7 @@ namespace CarSystem.Data.Models.Tests.UserTests
         }
 
         [Test]
-        public void FirstName_ShouldHaveTheCorrectMaxLength()
+        public void FirstName_Should_HaveTheCorrectMaxLength()
         {
             // Arrange
             var firstNameProp = typeof(User).GetProperty("FirstName");
@@ -65,7 +64,7 @@ namespace CarSystem.Data.Models.Tests.UserTests
 
         [TestCase("Vasil")]
         [TestCase("Ivan")]
-        public void FirstName_ShouldSetTitleDataCorrectly(string testFirstName)
+        public void FirstName_Should_SetTitleDataCorrectly(string testFirstName)
         {
             // Arrange & Act
             var user = new User { FirstName = testFirstName };
@@ -75,7 +74,7 @@ namespace CarSystem.Data.Models.Tests.UserTests
         }
 
         [Test]
-        public void LastName_ShouldHaveTheCorrectMinLength()
+        public void LastName_Should_HaveTheCorrectMinLength()
         {
             // Arrange
             var firstNameProp = typeof(User).GetProperty("LastName");
@@ -90,7 +89,7 @@ namespace CarSystem.Data.Models.Tests.UserTests
         }
 
         [Test]
-        public void LastName_ShouldHaveTheCorrectMaxLength()
+        public void LastName_Should_HaveTheCorrectMaxLength()
         {
             // Arrange
             var firstNameProp = typeof(User).GetProperty("LastName");
@@ -106,7 +105,7 @@ namespace CarSystem.Data.Models.Tests.UserTests
 
         [TestCase("Penev")]
         [TestCase("Angelov")]
-        public void LastName_ShouldSetTitleDataCorrectly(string testLastName)
+        public void LastName_Should_SetTitleDataCorrectly(string testLastName)
         {
             // Arrange & Act
             var user = new User { LastName = testLastName };
@@ -117,7 +116,7 @@ namespace CarSystem.Data.Models.Tests.UserTests
 
         [TestCase(true)]
         [TestCase(false)]
-        public void IsDeleted_ShouldGetAndSetDataCorrectly(bool testIsDeleted)
+        public void IsDeleted_Should_GetAndSetDataCorrectly(bool testIsDeleted)
         {
             // Arrange & Act
             var user = new User { IsDeleted = testIsDeleted };
@@ -128,7 +127,7 @@ namespace CarSystem.Data.Models.Tests.UserTests
 
         [TestCase(123)]
         [TestCase(12)]
-        public void AdvertCollection_ShouldGetAndSetDataCorrectly(int testId)
+        public void AdvertCollection_Should_GetAndSetDataCorrectly(int testId)
         {
             // Arrange & Act
             var advert = new Advert() { Id = testId };

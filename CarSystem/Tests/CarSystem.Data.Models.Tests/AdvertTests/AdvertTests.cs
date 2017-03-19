@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 using NUnit.Framework;
@@ -11,7 +12,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
     public class AdvertTests
     {
         [Test]
-        public void IdKey_ShouldHaveTheKeyAttribute()
+        public void Id_Should_HaveTheKeyAttribute()
         {
             // Arrange
             var keyAttributeProperty = typeof(Advert).GetProperty("Id");
@@ -28,7 +29,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
-        public void Id_ShouldSetIdCorrectly(int testId)
+        public void Id_Should_SetIdCorrectly(int testId)
         {
             // Arrange & Act
             var advert = new Advert { Id = testId };
@@ -38,7 +39,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
-        public void Title_ShouldHaveTheRequiredAttribute()
+        public void Title_Should_HaveTheRequiredAttribute()
         {
             // Arrange
             var titleProp = typeof(Advert).GetProperty("Title");
@@ -53,7 +54,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
-        public void Title_ShouldHaveTheCorrectMinLength()
+        public void Title_Should_HaveTheCorrectMinLength()
         {
             // Arrange
             var titleProp = typeof(Advert).GetProperty("Title");
@@ -68,7 +69,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
-        public void Title_ShouldHaveTheCorrectMaxLength()
+        public void Title_Should_HaveTheCorrectMaxLength()
         {
             // Arrange
             var titleProp = typeof(Advert).GetProperty("Title");
@@ -84,7 +85,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase("Best Scrap Car Brah!")]
         [TestCase("Best Hypercar Car Brah!")]
-        public void Title_ShouldSetTitleDataCorrectly(string testTitle)
+        public void Title_Should_SetTitleDataCorrectly(string testTitle)
         {
             // Arrange & Act
             var advert = new Advert { Title = testTitle };
@@ -95,7 +96,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase(true)]
         [TestCase(false)]
-        public void IsDeleted_ShouldGetAndSetDataCorrectly(bool testIsDeleted)
+        public void IsDeleted_Should_GetAndSetDataCorrectly(bool testIsDeleted)
         {
             // Arrange & Act
             var advert = new Advert { IsDeleted = testIsDeleted };
@@ -105,7 +106,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
-        public void Year_ShouldHaveRequiredAttribute()
+        public void Year_Should_HaveRequiredAttribute()
         {
             // Arrange
             var yearProp = typeof(Advert).GetProperty("Year");
@@ -121,7 +122,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase(1999)]
         [TestCase(2017)]
-        public void Year_ShouldSetDataCorrectly(int testYear)
+        public void Year_Should_SetDataCorrectly(int testYear)
         {
             // Arrange & Act
             var advert = new Advert { Year = testYear };
@@ -131,7 +132,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
-        public void Price_ShouldHaveRequiredAttribute()
+        public void Price_Should_HaveRequiredAttribute()
         {
             // Arrange
             var priceProp = typeof(Advert).GetProperty("Price");
@@ -147,7 +148,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase(14000.00)]
         [TestCase(4329.00)]
-        public void Price_ShouldSetDataCorreclty(decimal testPrice)
+        public void Price_Should_SetDataCorreclty(decimal testPrice)
         {
             // Arrange & Act
             var advert = new Advert { Price = testPrice };
@@ -157,7 +158,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
-        public void Power_ShouldHaveRequiredAttribute()
+        public void Power_Should_HaveRequiredAttribute()
         {
             // Arrange
             var powerProp = typeof(Advert).GetProperty("Power");
@@ -173,7 +174,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase(247)]
         [TestCase(1001)]
-        public void Power_ShouldSetDataCorrectly(int testPower)
+        public void Power_Should_SetDataCorrectly(int testPower)
         {
             // Arrange & Act
             var advert = new Advert { Power = testPower };
@@ -183,7 +184,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
-        public void DistanceCoverage_ShouldHaveRequiredAttribute()
+        public void DistanceCoverage_Should_HaveRequiredAttribute()
         {
             // Arrange
             var distanceCoverageProp = typeof(Advert).GetProperty("DistanceCoverage");
@@ -199,7 +200,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase(50000)]
         [TestCase(250000)]
-        public void DistanceCoverage_ShouldSetDataCorrectly(int testDistanceCoverage)
+        public void DistanceCoverage_Should_SetDataCorrectly(int testDistanceCoverage)
         {
             // Arrange & Act
             var advert = new Advert { DistanceCoverage = testDistanceCoverage };
@@ -209,7 +210,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
-        public void Description_ShouldHaveRequiredAttribute()
+        public void Description_Should_HaveRequiredAttribute()
         {
             // Arrange
             var descriptionProp = typeof(Advert).GetProperty("Description");
@@ -224,7 +225,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
-        public void Description_ShouldHaveTheCorrectMinLength()
+        public void Description_Should_HaveTheCorrectMinLength()
         {
             // Arrange
             var descriptionProp = typeof(Advert).GetProperty("Description");
@@ -239,7 +240,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
-        public void Description_ShouldHaveTheCorrectMaxLength()
+        public void Description_Should_HaveTheCorrectMaxLength()
         {
             // Arrange
             var descriptionProp = typeof(Advert).GetProperty("Description");
@@ -255,7 +256,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase("I Crashed My car Like 42 Times!!! Please Buy It!!!")]
         [TestCase("I Crashed My car Like 12312313 Times!!! Please Buy It!!!")]
-        public void Description_ShouldSetDataCorrectly(string testDescription)
+        public void Description_Should_SetDataCorrectly(string testDescription)
         {
             // Arrange & Act
             var advert = new Advert { Description = testDescription };
@@ -265,7 +266,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
         }
 
         [Test]
-        public void Constructor_ShouldHaveParametlessConstructor()
+        public void Constructor_Should_HaveParametlessConstructor()
         {
             // Arrange & Act
             var advert = new Advert();
@@ -276,7 +277,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase(15)]
         [TestCase(20)]
-        public void VehicleModelId_ShouldGetAndSetDataCorrectly(int testVehicleModelId)
+        public void VehicleModelId_Should_GetAndSetDataCorrectly(int testVehicleModelId)
         {
             // Arrange & Act
             var advert = new Advert() { VehicleModelId = testVehicleModelId };
@@ -287,7 +288,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase("Model X")]
         [TestCase("La Ferrari")]
-        public void VehicleModel_ShouldGetAndSetDataCorrectly(string testVehicleModelName)
+        public void VehicleModel_Should_GetAndSetDataCorrectly(string testVehicleModelName)
         {
             // Arrange & Act
             var vehicleModel = new VehicleModel { Name = testVehicleModelName };
@@ -299,7 +300,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase(15)]
         [TestCase(20)]
-        public void CityId_ShouldGetAndSetDataCorrectly(int testCityId)
+        public void CityId_Should_GetAndSetDataCorrectly(int testCityId)
         {
             // Arrange & Act
             var advert = new Advert() { CityId = testCityId };
@@ -310,7 +311,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase("Veliko Turnovo")]
         [TestCase("Sofia")]
-        public void City_ShouldGetAndSetDataCorreclty(string testCityName)
+        public void City_Should_GetAndSetDataCorreclty(string testCityName)
         {
             // Arrange & Act
             var city = new City { Name = testCityName };
@@ -322,7 +323,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase("191983391239jskd-asdnbjasdnj-22")]
         [TestCase("asdjasdj9i1231-123ju1jsad")]
-        public void UserId_ShouldGetAndSetDataCorrectly(string testUserId)
+        public void UserId_Should_GetAndSetDataCorrectly(string testUserId)
         {
             // Arrange & Act
             var advert = new Advert() { UserId = testUserId };
@@ -333,7 +334,7 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
         [TestCase("chuk@abv.bg")]
         [TestCase("tuturutka@yahoo.com")]
-        public void User_ShouldGetAndSetDataCorreclty(string testUserEmail)
+        public void User_Should_GetAndSetDataCorreclty(string testUserEmail)
         {
             // Arrange & Act
             var user = new User { Email = testUserEmail };
@@ -341,6 +342,17 @@ namespace CarSystem.Data.Models.Tests.AdvertTests
 
             // Assert
             Assert.AreEqual(advert.User.Email, testUserEmail);
+        }
+
+        [Test]
+        public void AdvertImages_Should_GetAndSetDataCorrectly()
+        {
+            // Arrange & Act
+            var advertImages = new List<AdvertImage> { new AdvertImage(), new AdvertImage() };
+            var advert = new Advert { AdvertImages = advertImages };
+
+            // Assert
+            Assert.AreEqual(advert.AdvertImages, advertImages);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace CarSystem.Data.Models.Tests.ManufacturerTests
     public class ManufacturerTests
     {
         [Test]
-        public void Constructor_ShouldHaveParameterlessConstructor()
+        public void Constructor_Should_HaveParameterlessConstructor()
         {
             // Arrange & Act
             var manufacturer = new Manufacturer();
@@ -23,7 +23,7 @@ namespace CarSystem.Data.Models.Tests.ManufacturerTests
         }
 
         [Test]
-        public void Constructor_ShouldInitializeVehicleModelCollectionCorrectly()
+        public void Constructor_Should_InitializeVehicleModelCollectionCorrectly()
         {
             // Arrange & Act
             var manufacturer = new Manufacturer();
@@ -34,7 +34,7 @@ namespace CarSystem.Data.Models.Tests.ManufacturerTests
         }
         
         [Test]
-        public void Id_ShouldHaveKeyAttribute()
+        public void Id_Should_HaveKeyAttribute()
         {
             // Arrange
             var idProperty = typeof(Manufacturer).GetProperty("Id");
@@ -50,7 +50,7 @@ namespace CarSystem.Data.Models.Tests.ManufacturerTests
 
         [TestCase(1)]
         [TestCase(2)]
-        public void Id_ShouldGetAndSetDataCorrectly(int testId)
+        public void Id_Should_GetAndSetDataCorrectly(int testId)
         {
             // Arrange & Act
             var manufacturer = new Manufacturer { Id = testId };
@@ -60,7 +60,7 @@ namespace CarSystem.Data.Models.Tests.ManufacturerTests
         }
         
         [Test]
-        public void Name_ShouldHaveRequiredAttribute()
+        public void Name_Should_HaveRequiredAttribute()
         {
             // Arrange
             var nameProperty = typeof(Manufacturer).GetProperty("Name");
@@ -75,7 +75,7 @@ namespace CarSystem.Data.Models.Tests.ManufacturerTests
         }
 
         [Test]
-        public void Name_ShouldHaveUniqueAttribute()
+        public void Name_Should_HaveUniqueAttribute()
         {
             // Arrange
             var nameProperty = typeof(Manufacturer).GetProperty("Name");
@@ -90,7 +90,7 @@ namespace CarSystem.Data.Models.Tests.ManufacturerTests
         }
 
         [Test]
-        public void Name_ShouldHaveCorrectMinLength()
+        public void Name_Should_HaveCorrectMinLength()
         {
             // Arrange
             var nameProperty = typeof(Manufacturer).GetProperty("Name");
@@ -105,7 +105,7 @@ namespace CarSystem.Data.Models.Tests.ManufacturerTests
         }
 
         [Test]
-        public void Name_ShouldHaveCorrectMaxLength()
+        public void Name_Should_HaveCorrectMaxLength()
         {
             // Arrange
             var nameProperty = typeof(Manufacturer).GetProperty("Name");
@@ -121,7 +121,7 @@ namespace CarSystem.Data.Models.Tests.ManufacturerTests
 
         [TestCase("Audi")]
         [TestCase("BMV")]
-        public void Name_ShouldGetAndSetDataCorrectly(string testName)
+        public void Name_Should_GetAndSetDataCorrectly(string testName)
         {
             // Arrange & Act
             var manufacturer = new Manufacturer { Name = testName };
@@ -132,7 +132,7 @@ namespace CarSystem.Data.Models.Tests.ManufacturerTests
 
         [TestCase(123)]
         [TestCase(12)]
-        public void VehicleModelCollection_ShouldGetAndSetDataCorrectly(int testId)
+        public void VehicleModelCollection_Should_GetAndSetDataCorrectly(int testId)
         {
             // Arrange & Act
             var vehicleModel = new VehicleModel() { Id = testId };
