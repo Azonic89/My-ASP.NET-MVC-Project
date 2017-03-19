@@ -10,12 +10,13 @@ namespace CarSystem.Data.Services.Tests.CityServiceTests
     [TestFixture]
     public class GetCityByIdShould
     {
+        [Test]
         public void GetById_Should_BeCalledOnce_IfParamsAreValid()
         {
             // Arrange
             var mockedDataProvider = new Mock<IEfCarSystemDataProvider<City>>();
             var cityService = new CityService(mockedDataProvider.Object);
-            var city = new Mock<Category>();
+            var city = new Mock<City>();
 
             // Act
             cityService.GetById(city.Object.Id);
@@ -83,7 +84,6 @@ namespace CarSystem.Data.Services.Tests.CityServiceTests
             // Arrange
             var mockedDataProvider = new Mock<IEfCarSystemDataProvider<City>>();
             var cityService = new CityService(mockedDataProvider.Object);
-            Mock<City> cityThatIsNull = null;
 
             // Act
             mockedDataProvider.Setup(rep => rep.GetById(0)).Returns(() => null);

@@ -85,7 +85,6 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
             // Arrange
             var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
             var advertService = new AdvertService(mockedDataProvider.Object);
-            Mock<Advert> advertThatIsNull = null;
 
             // Act
             mockedDataProvider.Setup(rep => rep.GetById(0)).Returns(() => null);

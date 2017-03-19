@@ -59,6 +59,9 @@
     <Compile Include="CityServiceTests\ConstructorShould.cs" />
     <Compile Include="CityServiceTests\GetAllCitiesShould.cs" />
     <Compile Include="CityServiceTests\GetCityByIdShould.cs" />
+    <Compile Include="ManufacturerServicesTests\ConstructorShould.cs" />
+    <Compile Include="ManufacturerServicesTests\GetAllManufacturersShould.cs" />
+    <Compile Include="ManufacturerServicesTests\GetManufacturerByIdShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +81,7 @@
       <Name>CarSystem.Data.Services</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -84,7 +84,6 @@ namespace CarSystem.Data.Services.Tests.CategoryServiceTests
             // Arrange
             var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Category>>();
             var categoryService = new CategoryService(mockedDataProvider.Object);
-            Mock<Category> categoryThatIsNull = null;
 
             // Act
             mockedDataProvider.Setup(rep => rep.GetById(0)).Returns(() => null);

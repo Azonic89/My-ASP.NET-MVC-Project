@@ -50,6 +50,8 @@
     <Compile Include="Contracts\IAdvertService.cs" />
     <Compile Include="Contracts\ICategoryService.cs" />
     <Compile Include="Contracts\ICityService.cs" />
+    <Compile Include="Contracts\IManufacturerService.cs" />
+    <Compile Include="ManufacturerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
