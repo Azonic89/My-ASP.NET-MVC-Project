@@ -10,19 +10,17 @@ namespace CarSystem.Data.Repositories
 {
     public class EfCarSystemDataProvider<T> : IEfCarSystemDataProvider<T> where T : class
     {
-        private readonly ICarSystemDbContext carSystemDbContext;
-
         public EfCarSystemDataProvider(ICarSystemDbContext carSystemDbContext)
         {
             Guard.WhenArgument(carSystemDbContext, nameof(ICarSystemDbContext)).IsNull().Throw();
 
-            this.carSystemDbContext = carSystemDbContext;
-            this.DbSet = this.carSystemDbContext.Set<T>();
+            this.Context = carSystemDbContext;
+            this.DbSet = this.Context.Set<T>();
         }
 
-        protected IDbSet<T> DbSet { get; set; }
+        public IDbSet<T> DbSet { get; set; }
 
-        protected ICarSystemDbContext Context { get; set; }
+        public ICarSystemDbContext Context { get; set; }
 
         public virtual IQueryable<T> All()
         {
