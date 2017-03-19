@@ -93,7 +93,7 @@ namespace CarSystem.Data.Services.Tests.CategoryServiceTests
         }
 
         [Test]
-        public void GetById_Should_ReturnTheCorrectAdvert_IfCalled()
+        public void GetById_Should_ReturnTheCorrectCategory_IfCalled()
         {
             // Arrange
             var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Category>>();

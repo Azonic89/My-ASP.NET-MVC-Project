@@ -79,7 +79,7 @@ namespace CarSystem.Data.Services.Tests.CityServiceTests
         }
 
         [Test]
-        public void GetById_Should_NotReturnCategory_IfThereIsNoCityYolo()
+        public void GetById_Should_NotReturnCity_IfThereIsNoCityYolo()
         {
             // Arrange
             var mockedDataProvider = new Mock<IEfCarSystemDataProvider<City>>();

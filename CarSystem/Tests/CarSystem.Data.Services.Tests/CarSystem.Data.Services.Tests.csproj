@@ -63,6 +63,9 @@
     <Compile Include="ManufacturerServicesTests\GetAllManufacturersShould.cs" />
     <Compile Include="ManufacturerServicesTests\GetManufacturerByIdShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VehicleModelServiceTests\ConstructorShould.cs" />
+    <Compile Include="VehicleModelServiceTests\GetAllVehicleModelsShould.cs" />
+    <Compile Include="VehicleModelServiceTests\GetVehicleModelByIdShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
