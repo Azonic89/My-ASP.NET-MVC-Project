@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using NUnit.Framework;
+using Moq;
+
 using CarSystem.Data.Contracts;
 using CarSystem.Data.Models;
-using Moq;
 
 namespace CarSystem.Data.Services.Tests.CategoryServiceTests
 {
