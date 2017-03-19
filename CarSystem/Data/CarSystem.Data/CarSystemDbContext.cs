@@ -15,22 +15,18 @@ namespace CarSystem.Data
         {
         }
 
-        public virtual DbSet<Advert> Adverts { get; set; }
+        public virtual IDbSet<Advert> Adverts { get; set; }
                
-        public virtual DbSet<AdvertImage> AdvertImages { get; set; }
+        public virtual IDbSet<AdvertImage> AdvertImages { get; set; }
                
-        public virtual DbSet<Category> Categories { get; set; }
+        public virtual IDbSet<Category> Categories { get; set; }
                
-        public virtual DbSet<City> Cities { get; set; }
+        public virtual IDbSet<City> Cities { get; set; }
                
-        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
+        public virtual IDbSet<Manufacturer> Manufacturers { get; set; }
                
-        public virtual DbSet<VehicleModel> VehicleModels { get; set; }
+        public virtual IDbSet<VehicleModel> VehicleModels { get; set; }
 
-        void ICarSystemDbContext.SaveChanges()
-        {
-            base.SaveChanges();
-        }
         public static CarSystemDbContext Create()
         {
             return new CarSystemDbContext();

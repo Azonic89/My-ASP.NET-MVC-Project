@@ -1,25 +1,28 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
 using CarSystem.Data.Models;
 
 namespace CarSystem.Data.Contracts
 {
-    public interface ICarSystemDbContext
+    public interface ICarSystemDbContext : IDisposable
     {
-        DbSet<Advert> Adverts { get; set; }
+        IDbSet<User> Users { get; set; }
 
-        DbSet<AdvertImage> AdvertImages { get; set; }
+        IDbSet<Advert> Adverts { get; set; }
 
-        DbSet<Category> Categories { get; set; }
+        IDbSet<AdvertImage> AdvertImages { get; set; }
 
-        DbSet<City> Cities { get; set; }
+        IDbSet<Category> Categories { get; set; }
 
-        DbSet<Manufacturer> Manufacturers { get; set; }
+        IDbSet<City> Cities { get; set; }
 
-        DbSet<VehicleModel> VehicleModels { get; set; }
+        IDbSet<Manufacturer> Manufacturers { get; set; }
 
-        void SaveChanges();
+        IDbSet<VehicleModel> VehicleModels { get; set; }
+
+        int SaveChanges();
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
