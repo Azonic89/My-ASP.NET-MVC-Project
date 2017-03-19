@@ -53,6 +53,9 @@
     <Compile Include="AdvertServiceTests\GetAdvertByIdShould.cs" />
     <Compile Include="AdvertServiceTests\GetAdvertsByMultipleParametersShould.cs" />
     <Compile Include="AdvertServiceTests\GetAllAdvertsShould.cs" />
+    <Compile Include="CategoryServiceTests\ConstructorShould.cs" />
+    <Compile Include="CategoryServiceTests\GetAllCategoriesShould.cs" />
+    <Compile Include="CategoryServiceTests\GetCategoryByIdShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

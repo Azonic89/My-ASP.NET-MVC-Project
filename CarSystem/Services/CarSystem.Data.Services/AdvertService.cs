@@ -4,10 +4,11 @@ using Bytes2you.Validation;
 
 using CarSystem.Data.Contracts;
 using CarSystem.Data.Models;
+using CarSystem.Data.Services.Contracts;
 
 namespace CarSystem.Data.Services
 {
-    public class AdvertService
+    public class AdvertService : IAdvertService
     {
         private readonly IEfCarSystemDataProvider<Advert> advertDataProvider;
 
