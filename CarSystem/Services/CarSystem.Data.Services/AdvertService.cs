@@ -9,72 +9,76 @@ namespace CarSystem.Data.Services
 {
     public class AdvertService
     {
-        //private readonly ICarSystemData carSystemData;
+        private readonly IEfCarSystemDataProvider<Advert> advertDataProvider;
 
-        //public AdvertService(ICarSystemData carSystemData)
-        //{
-        //    Guard.WhenArgument(carSystemData, "Unit of Work is Null!!!").IsNull().Throw();
+        public AdvertService(IEfCarSystemDataProvider<Advert> advertDataProvider)
+        {
+            Guard.WhenArgument(advertDataProvider, nameof(advertDataProvider)).IsNull().Throw();
 
-        //    this.carSystemData = carSystemData;
-        //}
+            this.advertDataProvider = advertDataProvider;
+        }
 
-        //public void AddAdvert(Advert advertToAdd)
-        //{
-        //    Guard.WhenArgument(advertToAdd, "Advert to Add is Null!!!").IsNull().Throw();
+        public void AddAdvert(Advert advertToAdd)
+        {
+            Guard.WhenArgument(advertToAdd, nameof(advertToAdd)).IsNull().Throw();
 
-        //    this.carSystemData.Adverts.Add(advertToAdd);
-        //}
+            this.advertDataProvider.Add(advertToAdd);
+            this.advertDataProvider.SaveChanges();
+        }
 
-        //public void DeleteAdvert(Advert advertToDelete)
-        //{
-        //    Guard.WhenArgument(advertToDelete, "Advert To Delete is Null!!!!").IsNull().Throw();
+        public void DeleteAdvert(Advert advertToDelete)
+        {
+            Guard.WhenArgument(advertToDelete, nameof(advertToDelete)).IsNull().Throw();
 
-        //    this.carSystemData.Adverts.Delete(advertToDelete);
-        //}
+            this.advertDataProvider.Delete(advertToDelete);
+            this.advertDataProvider.SaveChanges();
+        }
 
-        //public void DeleteAdvertById(object advertId)
-        //{
-        //    Guard.WhenArgument(advertId, "The Id of the Advert cannot be Null!!!").IsNull().Throw();
+        public void DeleteAdvertById(object advertId)
+        {
+            Guard.WhenArgument(advertId, nameof(advertId)).IsNull().Throw();
 
-        //    this.carSystemData.Adverts.Delete((int)advertId);
-        //}
+            this.advertDataProvider.Delete((int)advertId);
+            this.advertDataProvider.SaveChanges();
+        }
 
-        //public IQueryable<Advert> GetAllAdverts()
-        //{
-        //    return this.carSystemData.Adverts.All();
-        //}
+        public IQueryable<Advert> GetAllAdverts()
+        {
+            return this.advertDataProvider.All();
+        }
 
-        //public Advert GetById(int id)
-        //{
-        //    return this.carSystemData.Adverts.GetById(id);
-        //}
+        public Advert GetById(int id)
+        {
+            return this.advertDataProvider.GetById(id);
+        }
 
-        //public IQueryable<Advert> GetAdvertsByMultipleParameters(int vehicleModelId, int cityId, int minPrice, int maxPrice, int yearFrom, int yearTo)
-        //{
-        //    var adverts = this.carSystemData.Adverts
-        //                                    .All()
-        //                                    .Where(a => a.VehicleModelId == vehicleModelId &&
-        //                                                a.CityId == cityId &&
-        //                                                a.Price >= minPrice &&
-        //                                                a.Price <= maxPrice &&
-        //                                                a.Year >= yearFrom &&
-        //                                                a.Year <= yearTo);
+        public IQueryable<Advert> GetAdvertsByMultipleParameters(int vehicleModelId, int cityId, int minPrice, int maxPrice, int yearFrom, int yearTo)
+        {
+            var adverts = this.advertDataProvider
+                                            .All()
+                                            .Where(a => a.VehicleModelId == vehicleModelId &&
+                                                        a.CityId == cityId &&
+                                                        a.Price >= minPrice &&
+                                                        a.Price <= maxPrice &&
+                                                        a.Year >= yearFrom &&
+                                                        a.Year <= yearTo);
 
-        //    return adverts;
-        //}
+            return adverts;
+        }
 
-        //public void UpdateAdvert(Advert advert)
-        //{
-        //    this.carSystemData.Adverts.Update(advert);
-        //}
+        public void UpdateAdvert(Advert advert)
+        {
+            this.advertDataProvider.Update(advert);
+            this.advertDataProvider.SaveChanges();
+        }
 
-        //public IQueryable<Advert> GetAllAdvertsByUserId(string userId)
-        //{
-        //    var adverts = this.carSystemData.Adverts
-        //        .All()
-        //        .Where(a => a.UserId == userId);
+        public IQueryable<Advert> GetAllAdvertsByUserId(string userId)
+        {
+            var adverts = this.advertDataProvider
+                .All()
+                .Where(a => a.UserId == userId);
 
-        //    return adverts;
-        //}
+            return adverts;
+        }
     }
 }

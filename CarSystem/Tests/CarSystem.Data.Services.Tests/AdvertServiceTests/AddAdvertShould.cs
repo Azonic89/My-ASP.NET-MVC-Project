@@ -1,11 +1,7 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CarSystem.Data.Contracts;
+﻿using CarSystem.Data.Contracts;
 using CarSystem.Data.Models;
+
+using NUnit.Framework;
 using Moq;
 
 namespace CarSystem.Data.Services.Tests.AdvertServiceTests
@@ -13,18 +9,48 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
     [TestFixture]
     public class AddAdvertShould
     {
-        //[Test]
-        //public void AddAdvert_Should_BeCalled_IfAdvertIsValid()
-        //{
-        //    var mockedCarSystemData = new Mock<ICarSystemData>();
-        //    var advertService = new AdvertService(mockedCarSystemData.Object);
-        //    var advertToAdd = new Advert();
-        //    var advertRepository = new Mock<IEfGenericRepository<Advert>>();
-        //    mockedCarSystemData.Setup(a => a.Adverts).Returns(advertRepository.Object);
-        //    advertService.AddAdvert(advertToAdd);
+        [Test]
+        public void AddAdvert_Should_BeCalledOnce_IfAdvertIsValid()
+        {
+            // Arrange
+            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
+            var mockedAdvert = new Mock<Advert>();
 
+            // Act
+            var advertService = new AdvertService(mockedDataProvider.Object);
+            advertService.AddAdvert(mockedAdvert.Object);
 
-        //    mockedCarSystemData.Verify(data => data.Adverts.Add(advertToAdd), Times.Once);
-        //}
+            // Assert
+            mockedDataProvider.Verify(ser => ser.Add(mockedAdvert.Object), Times.Once);
+        }
+
+        [Test]
+        public void AddAdvert_Should_CallSaveChangesOnce_IfAdvertIsValid()
+        {
+            // Arrange
+            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
+            var mockedAdvert = new Mock<Advert>();
+
+            // Act
+            var advertService = new AdvertService(mockedDataProvider.Object);
+            advertService.AddAdvert(mockedAdvert.Object);
+
+            // Assert
+            mockedDataProvider.Verify(ser => ser.SaveChanges(), Times.Once);
+        }
+
+        [Test]
+        public void AddAdvert_Should_ThrowAgrumentNullException_IfAdvertIsNull()
+        {
+            // Arrange
+            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
+            Advert nullAdvert = null;
+
+            // Act
+            var advertService = new AdvertService(mockedDataProvider.Object);
+
+            // Assert
+            Assert.That(() => advertService.AddAdvert(nullAdvert), Throws.ArgumentNullException);
+        }
     }
 }

@@ -48,6 +48,11 @@
   <ItemGroup>
     <Compile Include="AdvertServiceTests\AddAdvertShould.cs" />
     <Compile Include="AdvertServiceTests\ConstructorShould.cs" />
+    <Compile Include="AdvertServiceTests\DeleteAdvertByIdShould.cs" />
+    <Compile Include="AdvertServiceTests\DeleteAdvertShould.cs" />
+    <Compile Include="AdvertServiceTests\GetAdvertByIdShould.cs" />
+    <Compile Include="AdvertServiceTests\GetAdvertsByMultipleParametersShould.cs" />
+    <Compile Include="AdvertServiceTests\GetAllAdvertsShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

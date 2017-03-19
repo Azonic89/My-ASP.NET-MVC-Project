@@ -1,33 +1,36 @@
-﻿using NUnit.Framework;
-using System;
-using CarSystem.Data.Contracts;
+﻿using System;
+
 using Moq;
+using NUnit.Framework;
+
+using CarSystem.Data.Contracts;
+using CarSystem.Data.Models;
 
 namespace CarSystem.Data.Services.Tests.AdvertServiceTests
 {
     [TestFixture]
     public class ConstructorShould
     {
-        //[Test]
-        //public void Constructor_Should_CreateAdvertServices_IfParamsAreValid()
-        //{
-        //    // Arrange & Act
-        //    var mockedSystemData = new Mock<ICarSystemData>();
-        //    var advertService = new AdvertService(mockedSystemData.Object);
+        [Test]
+        public void Constructor_Should_CreateAdvertServices_IfParamsAreValid()
+        {
+            // Arrange & Act
+            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
+            var advertService = new AdvertService(mockedDataProvider.Object);
 
-        //    // Assert
-        //    Assert.That(advertService, Is.InstanceOf<AdvertService>());
-        //}
+            // Assert
+            Assert.That(advertService, Is.InstanceOf<AdvertService>());
+        }
 
-        //[Test]
-        //public void Constructor_Should_ThrowNullReferenceException_IfPassedCarSystemDataIsNull()
-        //{
-        //    // Arrange & Act
-        //    Mock<ICarSystemData> mockedSystemData = null;
+        [Test]
+        public void Constructor_Should_ArgumentNullException_IfPassedDataProviderIsNull()
+        {
+            // Arrange & Act
+            IEfCarSystemDataProvider<Advert> nullDataProvider = null;
 
-        //    // Assert
-        //    Assert.Throws<NullReferenceException>(
-        //        () => new AdvertService(mockedSystemData.Object));
-        //}
+            // Assert
+            Assert.Throws<ArgumentNullException>(
+                () => new AdvertService(nullDataProvider));
+        }
     }
 }
