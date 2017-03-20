@@ -62,6 +62,7 @@
     <Compile Include="EfRepoCarSystemData.Tests\AllShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\ConstructorShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\DeleteShould.cs" />
+    <Compile Include="EfRepoCarSystemData.Tests\DetachShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\DisposeShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\GetByIdShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\SaveChangesShould.cs" />
