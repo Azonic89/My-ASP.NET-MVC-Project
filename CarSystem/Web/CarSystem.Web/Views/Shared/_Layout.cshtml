@@ -31,9 +31,11 @@
         </div>
     </div>
     @Html.Partial("_CarouselPartial")
-    <div class="container body-content">
-        @RenderBody()
-    </div>
+    <main>
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+    </main>
     @Html.Partial("_FooterPartial")
 
     @Scripts.Render("~/bundles/jquery")
