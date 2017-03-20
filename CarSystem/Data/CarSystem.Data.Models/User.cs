@@ -8,7 +8,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 using CarSystem.ValidationConstants;
 
-using IUser = CarSystem.Data.Models.Contracts.IUser;
 
 namespace CarSystem.Data.Models
 {

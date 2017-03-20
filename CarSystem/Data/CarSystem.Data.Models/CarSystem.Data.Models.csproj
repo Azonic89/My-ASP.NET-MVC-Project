@@ -65,7 +65,6 @@
     <Compile Include="Contracts\ICategory.cs" />
     <Compile Include="Contracts\ICity.cs" />
     <Compile Include="Contracts\IManufacturer.cs" />
-    <Compile Include="Contracts\IUser.cs" />
     <Compile Include="Contracts\IVehicleModel.cs" />
     <Compile Include="Manufacturer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -46,6 +46,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvertImageServiceTests\GetAdvertImagesByAdvertIdShould.cs" />
     <Compile Include="AdvertServiceTests\AddAdvertShould.cs" />
     <Compile Include="AdvertServiceTests\ConstructorShould.cs" />
     <Compile Include="AdvertServiceTests\DeleteAdvertByIdShould.cs" />
