@@ -27,11 +27,8 @@ namespace CarSystem.Data.Tests.EfRepoCarSystemData.Tests
             try
             {
                 dataProvider.Detach(mockedAdvert.Object);
-
             }
-            catch (NullReferenceException e)
-            {
-            }
+            catch (NullReferenceException e) { };
 
             // Assert
             mockedDbContext.Verify(x => x.Entry(mockedAdvert.Object), Times.AtLeastOnce);
