@@ -64,6 +64,7 @@ namespace CarSystem.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load(new DataBindingsModule());
+            kernel.Load(new DataServicesBindingsModule());
         }        
     }
 }
