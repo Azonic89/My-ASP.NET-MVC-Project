@@ -13,8 +13,7 @@ namespace CarSystem.Web
     {
         protected void Application_Start()
         {
-            ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new RazorViewEngine());
+            ViewEngineConfig.RegisterViewEngines(ViewEngines.Engines);
 
             DatabaseConfig.Initialize();
             AreaRegistration.RegisterAllAreas();
