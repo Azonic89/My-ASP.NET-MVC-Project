@@ -8,7 +8,7 @@ using CarSystem.Data.Models;
 
 namespace CarSystem.Data
 {
-    public class CarSystemEfDbContext : IdentityDbContext<User>, ICarSystemEfDbContext
+    public class CarSystemEfDbContext : IdentityDbContext<User>, ICarSystemEfDbContext, ICarSystemEfDbContextSaveChanges
     {
         public CarSystemEfDbContext()
             : base("CarSystemDb")
