@@ -16,19 +16,19 @@ namespace CarSystem.Data.Tests.EfRepoCarSystemData.Tests
         public void ReturnCorrectResult_WhenParameterIsValid()
         {
             // Arrange 
-            var mockedDbSet = new Mock<DbSet<IAdvert>>();
-            var mockedDbContext = new Mock<ICarSystemDbContext>();
+            var mockedSet = new Mock<DbSet<IAdvert>>();
+            var mockedDbContext = new Mock<ICarSystemEfDbContext>();
             var fakeAdvert = new Mock<IAdvert>();
             var validId = 15;
 
             // Act
-            mockedDbContext.Setup(mock => mock.Set<IAdvert>()).Returns(mockedDbSet.Object);
-            var dataProvider = new EfCarSystemDataProvider<IAdvert>(mockedDbContext.Object);
-            mockedDbSet.Setup(x => x.Find(It.IsAny<int>())).Returns(fakeAdvert.Object);
+            mockedDbContext.Setup(mock => mock.Set<IAdvert>()).Returns(mockedSet.Object);
+            var mockedDbSet = new EfCarSystemDbSetCocoon<IAdvert>(mockedDbContext.Object);
+            mockedSet.Setup(x => x.Find(It.IsAny<int>())).Returns(fakeAdvert.Object);
 
             // Assert
-            Assert.That(dataProvider.GetById(validId), Is.Not.Null);
-            Assert.AreEqual(dataProvider.GetById(validId), fakeAdvert.Object);
+            Assert.That(mockedDbSet.GetById(validId), Is.Not.Null);
+            Assert.AreEqual(mockedDbSet.GetById(validId), fakeAdvert.Object);
         }
     }
 }

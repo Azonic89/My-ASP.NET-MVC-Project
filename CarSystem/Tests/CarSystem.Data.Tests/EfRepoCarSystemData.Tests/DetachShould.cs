@@ -18,15 +18,15 @@ namespace CarSystem.Data.Tests.EfRepoCarSystemData.Tests
         {
             // Arrange
             var mockedSet = new Mock<DbSet<IAdvert>>();
-            var mockedDbContext = new Mock<ICarSystemDbContext>();
+            var mockedDbContext = new Mock<ICarSystemEfDbContext>();
             mockedDbContext.Setup(x => x.Set<IAdvert>()).Returns(mockedSet.Object);
-            var dataProvider = new EfCarSystemDataProvider<IAdvert>(mockedDbContext.Object);
+            var mockedDbSet = new EfCarSystemDbSetCocoon<IAdvert>(mockedDbContext.Object);
             var mockedAdvert = new Mock<IAdvert>();
 
             // Act
             try
             {
-                dataProvider.Detach(mockedAdvert.Object);
+                mockedDbSet.Detach(mockedAdvert.Object);
             }
             catch (NullReferenceException e) { };
 

@@ -10,23 +10,23 @@ namespace CarSystem.Data.Services
 {
     public class CityService : ICityService
     {
-        private readonly IEfCarSystemDataProvider<City> cityDataProvider;
+        private readonly IEfCarSystemDbSetCocoon<City> cityDbSetCocoon;
 
-        public CityService(IEfCarSystemDataProvider<City> cityDataProvider)
+        public CityService(IEfCarSystemDbSetCocoon<City> cityDbSetCocoon)
         {
-            Guard.WhenArgument(cityDataProvider, nameof(cityDataProvider)).IsNull().Throw();
+            Guard.WhenArgument(cityDbSetCocoon, nameof(cityDbSetCocoon)).IsNull().Throw();
 
-            this.cityDataProvider = cityDataProvider;
+            this.cityDbSetCocoon = cityDbSetCocoon;
         }
 
         public IQueryable<City> GetAllCities()
         {
-            return this.cityDataProvider.All();
+            return this.cityDbSetCocoon.All();
         }
 
         public City GetById(int id)
         {
-            return this.cityDataProvider.GetById(id);
+            return this.cityDbSetCocoon.GetById(id);
         }
     }
 }

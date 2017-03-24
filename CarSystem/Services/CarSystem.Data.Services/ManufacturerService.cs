@@ -10,23 +10,23 @@ namespace CarSystem.Data.Services
 {
     public class ManufacturerService : IManufacturerService
     {
-        private readonly IEfCarSystemDataProvider<Manufacturer> manufacturerDataProvider;
+        private readonly IEfCarSystemDbSetCocoon<Manufacturer> manufacturerDbSetCocoon;
 
-        public ManufacturerService(IEfCarSystemDataProvider<Manufacturer> manufacturerDataProvider)
+        public ManufacturerService(IEfCarSystemDbSetCocoon<Manufacturer> manufacturerDbSetCocoon)
         {
-            Guard.WhenArgument(manufacturerDataProvider, nameof(manufacturerDataProvider)).IsNull().Throw();
+            Guard.WhenArgument(manufacturerDbSetCocoon, nameof(manufacturerDbSetCocoon)).IsNull().Throw();
 
-            this.manufacturerDataProvider = manufacturerDataProvider;
+            this.manufacturerDbSetCocoon = manufacturerDbSetCocoon;
         }
 
         public IQueryable<Manufacturer> GetAllManufacturers()
         {
-            return this.manufacturerDataProvider.All();
+            return this.manufacturerDbSetCocoon.All();
         }
 
         public Manufacturer GetById(int id)
         {
-            return this.manufacturerDataProvider.GetById(id);
+            return this.manufacturerDbSetCocoon.GetById(id);
         }
     }
 }

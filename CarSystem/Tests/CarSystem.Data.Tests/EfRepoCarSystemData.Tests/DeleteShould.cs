@@ -21,16 +21,16 @@ namespace CarSystem.Data.Tests.EfRepoCarSystemData.Tests
         public void Delete_Should_ThrowNullReferenceException_WhenPassedArgumentIsNull()
         {
             // Arrange
-            var mockedDbContext = new Mock<ICarSystemDbContext>();
+            var mockedDbContext = new Mock<ICarSystemEfDbContext>();
             var mockedSet = new Mock<DbSet<IAdvert>>();
 
             // Act
             mockedDbContext.Setup(set => set.Set<IAdvert>()).Returns(mockedSet.Object);
-            var dataProvider = new EfCarSystemDataProvider<IAdvert>(mockedDbContext.Object);
+            var mockedDbSet = new EfCarSystemDbSetCocoon<IAdvert>(mockedDbContext.Object);
             IAdvert entity = null;
 
             // Assert
-            Assert.That(() => dataProvider.Delete(entity),
+            Assert.That(() => mockedDbSet.Delete(entity),
                 Throws.InstanceOf<NullReferenceException>());
         }
 
@@ -41,15 +41,15 @@ namespace CarSystem.Data.Tests.EfRepoCarSystemData.Tests
             var mockedSet = new Mock<DbSet<IAdvert>>();
             var mockedAdvert = new Mock<IAdvert>();
             mockedSet.SetupAllProperties();
-            var mockedDbContext = new Mock<ICarSystemDbContext>();            
+            var mockedDbContext = new Mock<ICarSystemEfDbContext>();            
 
             // Act
             mockedDbContext.Setup(x => x.Set<IAdvert>()).Returns(mockedSet.Object);
-            var dataProvider = new EfCarSystemDataProvider<IAdvert>(mockedDbContext.Object);
+            var mockedDbSet = new EfCarSystemDbSetCocoon<IAdvert>(mockedDbContext.Object);
 
             try
             {
-                dataProvider.Delete(mockedAdvert.Object);
+                mockedDbSet.Delete(mockedAdvert.Object);
             }
             catch (NullReferenceException e)
             {

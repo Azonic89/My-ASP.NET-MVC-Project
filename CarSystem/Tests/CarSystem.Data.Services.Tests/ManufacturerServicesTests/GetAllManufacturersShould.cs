@@ -17,37 +17,37 @@ namespace CarSystem.Data.Services.Tests.ManufacturerServicesTests
         public void GetAllManufacturers_Should_BeCalled_IfParamsAreValid()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Manufacturer>>();
-            var manufacturerService = new ManufacturerService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Manufacturer>>();
+            var manufacturerService = new ManufacturerService(mockedDbSet.Object);
 
             // Act
             manufacturerService.GetAllManufacturers();
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.All(), Times.Once);
+            mockedDbSet.Verify(rep => rep.All(), Times.Once);
         }
 
         [Test]
         public void GetAllManufacturers_Should_NotBeCalled_IfItIsNeverCalled()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Manufacturer>>();
-            var manufacturerService = new ManufacturerService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Manufacturer>>();
+            var manufacturerService = new ManufacturerService(mockedDbSet.Object);
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.All(), Times.Never);
+            mockedDbSet.Verify(rep => rep.All(), Times.Never);
         }
 
         [Test]
         public void GetAllManufacturers_Should_ReturnIQueryable_IfCalled()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Manufacturer>>();
-            var manufacturerService = new ManufacturerService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Manufacturer>>();
+            var manufacturerService = new ManufacturerService(mockedDbSet.Object);
 
             // Act
             IEnumerable<Manufacturer> expectedManufacturersResult = new List<Manufacturer>() { new Manufacturer(), new Manufacturer() };
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedManufacturersResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedManufacturersResult.AsQueryable());
 
             // Assert
             Assert.IsInstanceOf<IQueryable<Manufacturer>>(manufacturerService.GetAllManufacturers());
@@ -57,12 +57,12 @@ namespace CarSystem.Data.Services.Tests.ManufacturerServicesTests
         public void GetAllManufacturers_Should_ReturnCorrectCollection_IfCalled()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Manufacturer>>();
-            var manufacturerService = new ManufacturerService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Manufacturer>>();
+            var manufacturerService = new ManufacturerService(mockedDbSet.Object);
 
             // Act
             IEnumerable<Manufacturer> expectedManufacturersResult = new List<Manufacturer>() { new Manufacturer(), new Manufacturer() };
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedManufacturersResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedManufacturersResult.AsQueryable());
 
             // Assert
             Assert.AreEqual(manufacturerService.GetAllManufacturers(), expectedManufacturersResult);
@@ -72,12 +72,12 @@ namespace CarSystem.Data.Services.Tests.ManufacturerServicesTests
         public void GetAllManufacturers_Should_ReturnEmptyCollection_IfThereAreNoManufacturersAdded()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Manufacturer>>();
-            var manufacturerService = new ManufacturerService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Manufacturer>>();
+            var manufacturerService = new ManufacturerService(mockedDbSet.Object);
 
             // Act
             IEnumerable<Manufacturer> expectedManufacturersResult = new List<Manufacturer>();
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedManufacturersResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedManufacturersResult.AsQueryable());
 
             // Assert
             Assert.IsEmpty(manufacturerService.GetAllManufacturers());
@@ -87,12 +87,12 @@ namespace CarSystem.Data.Services.Tests.ManufacturerServicesTests
         public void GetAllManufacturers_Should_ThrowArgumentNullException_IfPassedManufacturersAreNull()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Manufacturer>>();
-            var manufacturerService = new ManufacturerService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Manufacturer>>();
+            var manufacturerService = new ManufacturerService(mockedDbSet.Object);
 
             // Act
             IEnumerable<Manufacturer> expectedManufacturersResult = null;
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedManufacturersResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedManufacturersResult.AsQueryable());
 
             // Assert
             Assert.Throws<ArgumentNullException>(() => manufacturerService.GetAllManufacturers());

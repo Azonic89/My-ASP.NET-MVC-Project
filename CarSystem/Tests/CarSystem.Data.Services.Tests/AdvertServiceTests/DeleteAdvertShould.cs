@@ -15,8 +15,9 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void DeleteAdvert_Should_BeCalled_IfAdvertIsValid()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             var advertToAddAndDelete = new Mock<Advert>();
 
             // Act
@@ -24,15 +25,16 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
             advertService.DeleteAdvert(advertToAddAndDelete.Object);
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.Delete(advertToAddAndDelete.Object), Times.Once);
+            mockedDbSet.Verify(rep => rep.Delete(advertToAddAndDelete.Object), Times.Once);
         }
 
         [Test]
         public void DeleteAdvert_ShouldThrowNullReferenceException_IfAdvertIsNull()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             Mock<Advert> advertAsNull = null;
 
             // Assert
@@ -43,20 +45,22 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void DeleteAdvert_Should_NotDeleteAdvertThatIsNeverAddedInTheFirstPlace()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             var advertThatIsNotAdded = new Mock<Advert>();
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.Delete(advertThatIsNotAdded.Object), Times.Never);
+            mockedDbSet.Verify(rep => rep.Delete(advertThatIsNotAdded.Object), Times.Never);
         }
 
         [Test]
         public void DeleteAdvert_Should_CallSaveChangesTwoTimes_IfAdvertIsValid()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             var advert = new Mock<Advert>();
 
             // Act
@@ -64,27 +68,29 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
             advertService.DeleteAdvert(advert.Object);
 
             // Assert
-            mockedDataProvider.Verify(u => u.SaveChanges(), Times.Exactly(2));
+            mockedSaveChanges.Verify(u => u.SaveChanges(), Times.Exactly(2));
         }
 
         [Test]
         public void DeleteAdvert_Should_NotCallSaveChanges_IfAdvertIsNotDelete()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             var advertThatIsNotAdded = new Mock<Advert>();
 
             // Assert
-            mockedDataProvider.Verify(u => u.SaveChanges(), Times.Never);
+            mockedSaveChanges.Verify(u => u.SaveChanges(), Times.Never);
         }
 
         [Test]
         public void DeleteAdvert_Should_BeCalledOnce_IfParamsAreValid()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             var advert = new Mock<Advert>();
 
             // Act
@@ -92,7 +98,7 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
             advertService.DeleteAdvert(advert.Object);
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.Delete(It.IsAny<Advert>()), Times.Once);
+            mockedDbSet.Verify(rep => rep.Delete(It.IsAny<Advert>()), Times.Once);
         }
     }
 }

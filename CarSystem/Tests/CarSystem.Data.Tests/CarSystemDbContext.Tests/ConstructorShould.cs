@@ -11,20 +11,20 @@ namespace CarSystem.Data.Tests.CarSystemDbContext.Tests
         public void Constructor_Should_HaveParameterlessConstructor()
         {
             // Arrange & Act
-            var context = new Data.CarSystemDbContext();
+            var context = new Data.CarSystemEfDbContext();
 
             // Assert
-            Assert.IsInstanceOf<Data.CarSystemDbContext>(context);
+            Assert.IsInstanceOf<Data.CarSystemEfDbContext>(context);
         }
 
         [Test]
         public void Constructor_Should_Return_InstanceOfIPetsWonderlandDbContext()
         {
             // Arrange & Act
-            var context = new Data.CarSystemDbContext();
+            var context = new Data.CarSystemEfDbContext();
 
             // Assert
-            Assert.IsInstanceOf<ICarSystemDbContext>(context);
+            Assert.IsInstanceOf<ICarSystemEfDbContext>(context);
         }
     }
 }

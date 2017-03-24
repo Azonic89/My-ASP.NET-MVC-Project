@@ -13,44 +13,48 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void AddAdvert_Should_BeCalledOnce_IfAdvertIsValid()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
             var mockedAdvert = new Mock<Advert>();
 
             // Act
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             advertService.AddAdvert(mockedAdvert.Object);
 
             // Assert
-            mockedDataProvider.Verify(ser => ser.Add(mockedAdvert.Object), Times.Once);
+            mockedDbSet.Verify(ser => ser.Add(mockedAdvert.Object), Times.Once);
         }
 
         [Test]
         public void AddAdvert_Should_CallSaveChangesOnce_IfAdvertIsValid()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
             var mockedAdvert = new Mock<Advert>();
 
             // Act
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             advertService.AddAdvert(mockedAdvert.Object);
 
             // Assert
-            mockedDataProvider.Verify(ser => ser.SaveChanges(), Times.Once);
+            mockedSaveChanges.Verify(ser => ser.SaveChanges(), Times.Once);
         }
 
         [Test]
         public void AddAdvert_Should_ThrowAgrumentNullException_IfAdvertIsNull()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
             Advert nullAdvert = null;
 
             // Act
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
             // Assert
             Assert.That(() => advertService.AddAdvert(nullAdvert), Throws.ArgumentNullException);
         }
     }
 }
+

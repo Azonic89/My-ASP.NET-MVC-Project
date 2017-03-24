@@ -10,23 +10,23 @@ namespace CarSystem.Data.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IEfCarSystemDataProvider<Category> categoryDataProvider;
+        private readonly IEfCarSystemDbSetCocoon<Category> categoryDbSetCocoon;
 
-        public CategoryService(IEfCarSystemDataProvider<Category> categoryDataProvider)
+        public CategoryService(IEfCarSystemDbSetCocoon<Category> categoryDbSetCocoon)
         {
-            Guard.WhenArgument(categoryDataProvider, nameof(categoryDataProvider)).IsNull().Throw();
+            Guard.WhenArgument(categoryDbSetCocoon, nameof(categoryDbSetCocoon)).IsNull().Throw();
 
-            this.categoryDataProvider = categoryDataProvider;
+            this.categoryDbSetCocoon = categoryDbSetCocoon;
         }
 
         public IQueryable<Category> GetAllCategories()
         {
-            return this.categoryDataProvider.All();
+            return this.categoryDbSetCocoon.All();
         }
 
         public Category GetById(int id)
         {
-            return this.categoryDataProvider.GetById(id);
+            return this.categoryDbSetCocoon.GetById(id);
         }
     }
 }

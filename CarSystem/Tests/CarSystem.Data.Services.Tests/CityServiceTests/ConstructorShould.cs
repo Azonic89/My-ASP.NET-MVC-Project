@@ -15,8 +15,8 @@ namespace CarSystem.Data.Services.Tests.CityServiceTests
         public void Constructor_Should_CreateCityServices_IfParamsAreValid()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<City>>();
-            var cityService = new CityService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<City>>();
+            var cityService = new CityService(mockedDbSet.Object);
 
             // Assert
             Assert.That(cityService, Is.InstanceOf<CityService>());
@@ -26,7 +26,7 @@ namespace CarSystem.Data.Services.Tests.CityServiceTests
         public void Constructor_Should_ArgumentNullException_IfPassedDataProviderIsNull()
         {
             // Arrange & Act
-            IEfCarSystemDataProvider<City> nullDataProvider = null;
+            IEfCarSystemDbSetCocoon<City> nullDataProvider = null;
 
             // Assert
             Assert.Throws<ArgumentNullException>(

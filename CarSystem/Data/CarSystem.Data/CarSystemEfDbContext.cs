@@ -8,28 +8,28 @@ using CarSystem.Data.Models;
 
 namespace CarSystem.Data
 {
-    public class CarSystemDbContext : IdentityDbContext<User>, ICarSystemDbContext
+    public class CarSystemEfDbContext : IdentityDbContext<User>, ICarSystemEfDbContext
     {
-        public CarSystemDbContext()
+        public CarSystemEfDbContext()
             : base("CarSystemDb")
         {
         }
 
-        public virtual IDbSet<Advert> Adverts { get; set; }
+        public IDbSet<Advert> Adverts { get; set; }
                
-        public virtual IDbSet<AdvertImage> AdvertImages { get; set; }
+        public IDbSet<AdvertImage> AdvertImages { get; set; }
                
-        public virtual IDbSet<Category> Categories { get; set; }
+        public IDbSet<Category> Categories { get; set; }
                
-        public virtual IDbSet<City> Cities { get; set; }
+        public IDbSet<City> Cities { get; set; }
                
-        public virtual IDbSet<Manufacturer> Manufacturers { get; set; }
+        public IDbSet<Manufacturer> Manufacturers { get; set; }
                
-        public virtual IDbSet<VehicleModel> VehicleModels { get; set; }
+        public IDbSet<VehicleModel> VehicleModels { get; set; }
 
-        public static CarSystemDbContext Create()
+        public static CarSystemEfDbContext Create()
         {
-            return new CarSystemDbContext();
+            return new CarSystemEfDbContext();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

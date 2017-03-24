@@ -17,37 +17,37 @@ namespace CarSystem.Data.Services.Tests.CityServiceTests
         public void GetAllCities_Should_BeCalled_IfParamsAreValid()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<City>>();
-            var cityService = new CityService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<City>>();
+            var cityService = new CityService(mockedDbSet.Object);
 
             // Act
             cityService.GetAllCities();
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.All(), Times.Once);
+            mockedDbSet.Verify(rep => rep.All(), Times.Once);
         }
 
         [Test]
         public void GetAllCities_Should_NotBeCalled_IfItIsNeverCalled()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<City>>();
-            var cityService = new CityService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<City>>();
+            var cityService = new CityService(mockedDbSet.Object);
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.All(), Times.Never);
+            mockedDbSet.Verify(rep => rep.All(), Times.Never);
         }
 
         [Test]
         public void GetAllCities_Should_ReturnIQueryable_IfCalled()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<City>>();
-            var cityService = new CityService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<City>>();
+            var cityService = new CityService(mockedDbSet.Object);
 
             // Act
             IEnumerable<City> expectedCitiesResult = new List<City>() { new City(), new City() };
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedCitiesResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedCitiesResult.AsQueryable());
 
             // Assert
             Assert.IsInstanceOf<IQueryable<City>>(cityService.GetAllCities());
@@ -57,12 +57,12 @@ namespace CarSystem.Data.Services.Tests.CityServiceTests
         public void GetAllCities_Should_ReturnCorrectCollection_IfCalled()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<City>>();
-            var cityService = new CityService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<City>>();
+            var cityService = new CityService(mockedDbSet.Object);
 
             // Act
             IEnumerable<City> expectedCitiesResult = new List<City>() { new City(), new City() };
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedCitiesResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedCitiesResult.AsQueryable());
 
             // Assert
             Assert.AreEqual(cityService.GetAllCities(), expectedCitiesResult);
@@ -72,12 +72,12 @@ namespace CarSystem.Data.Services.Tests.CityServiceTests
         public void GetAllCities_Should_ReturnEmptyCollection_IfThereAreNoCategoriesAdded()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<City>>();
-            var cityService = new CityService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<City>>();
+            var cityService = new CityService(mockedDbSet.Object);
 
             // Act
             IEnumerable<City> expectedCitiesResult = new List<City>();
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedCitiesResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedCitiesResult.AsQueryable());
 
             // Assert
             Assert.IsEmpty(cityService.GetAllCities());
@@ -87,12 +87,12 @@ namespace CarSystem.Data.Services.Tests.CityServiceTests
         public void GetAllCities_Should_ThrowArgumentNullException_IfPassedCategoriesAreNull()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<City>>();
-            var cityService = new CityService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<City>>();
+            var cityService = new CityService(mockedDbSet.Object);
 
             // Act
             IEnumerable<City> expectedCitiesResult = null;
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedCitiesResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedCitiesResult.AsQueryable());
 
             // Assert
             Assert.Throws<ArgumentNullException>(() => cityService.GetAllCities());

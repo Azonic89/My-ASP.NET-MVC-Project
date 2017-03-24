@@ -10,18 +10,18 @@ namespace CarSystem.Data.Services
 {
     public class AdvertImageService : IAdvertImageService
     {
-        private readonly IEfCarSystemDataProvider<AdvertImage> advertImageDataProvider;
+        private readonly IEfCarSystemDbSetCocoon<AdvertImage> advertDbSetCocoon;
 
-        public AdvertImageService(IEfCarSystemDataProvider<AdvertImage> advertImageDataProvider)
+        public AdvertImageService(IEfCarSystemDbSetCocoon<AdvertImage> advertDbSetCocoon)
         {
-            Guard.WhenArgument(advertImageDataProvider, nameof(advertImageDataProvider)).IsNull().Throw();
+            Guard.WhenArgument(advertDbSetCocoon, nameof(advertDbSetCocoon)).IsNull().Throw();
 
-            this.advertImageDataProvider = advertImageDataProvider;
+            this.advertDbSetCocoon = advertDbSetCocoon;
         }
 
         public IQueryable<AdvertImage> GetAdvertImagesByAdvertId(int advertId)
         {
-            var advertImages = this.advertImageDataProvider
+            var advertImages = this.advertDbSetCocoon
                                                 .All()
                                                 .Where(p => p.AdvertImageId == advertId);
 

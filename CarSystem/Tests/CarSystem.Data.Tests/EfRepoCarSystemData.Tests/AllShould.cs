@@ -16,17 +16,17 @@ namespace CarSystem.Data.Tests.EfRepoCarSystemData.Tests
         public void All_Should_ReturnEntitiesOfGivenSet()
         {
             // Arrange
-            var mockedDbContext = new Mock<ICarSystemDbContext>();
+            var mockedDbContext = new Mock<ICarSystemEfDbContext>();
             var mockedSet = new Mock<DbSet<IAdvert>>();
 
             // Act
             mockedDbContext.Setup(x => x.Set<IAdvert>()).Returns(mockedSet.Object);
-            var dataProvider = new EfCarSystemDataProvider<IAdvert>(mockedDbContext.Object);
+            var mockedDbSet = new EfCarSystemDbSetCocoon<IAdvert>(mockedDbContext.Object);
 
             // Assert
-            Assert.NotNull(dataProvider.All());
-            Assert.IsInstanceOf(typeof(DbSet<IAdvert>), dataProvider.All());
-            Assert.AreSame(dataProvider.All(), dataProvider.DbSet);
+            Assert.NotNull(mockedDbSet.All());
+            Assert.IsInstanceOf(typeof(DbSet<IAdvert>), mockedDbSet.All());
+            Assert.AreSame(mockedDbSet.All(), mockedDbSet.DbSet);
         }
     }
 }

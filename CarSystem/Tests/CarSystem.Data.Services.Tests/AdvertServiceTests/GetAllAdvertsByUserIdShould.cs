@@ -17,10 +17,11 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         {
             // Arrange
             string userId = "asdasdasd";
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => new List<Advert>() {
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => new List<Advert>() {
                 new Advert { Id = 1, UserId = userId },
                 new Advert { Id = 2, UserId = userId },
                 new Advert { Id = 3, UserId = userId },

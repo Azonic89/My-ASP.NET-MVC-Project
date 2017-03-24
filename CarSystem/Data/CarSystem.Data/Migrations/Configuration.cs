@@ -2,7 +2,7 @@ using System.Data.Entity.Migrations;
 
 namespace CarSystem.Data.Migrations
 {
-    public sealed class Configuration : DbMigrationsConfiguration<CarSystemDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<CarSystemEfDbContext>
     {
         public Configuration()
         {
@@ -10,7 +10,7 @@ namespace CarSystem.Data.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(CarSystemDbContext context)
+        protected override void Seed(CarSystemEfDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

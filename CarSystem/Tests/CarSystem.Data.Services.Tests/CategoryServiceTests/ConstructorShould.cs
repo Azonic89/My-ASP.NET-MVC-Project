@@ -15,8 +15,8 @@ namespace CarSystem.Data.Services.Tests.CategoryServiceTests
         public void Constructor_Should_CreateCategoryServices_IfParamsAreValid()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Category>>();
-            var categoryService = new CategoryService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Category>>();
+            var categoryService = new CategoryService(mockedDbSet.Object);
 
             // Assert
             Assert.That(categoryService, Is.InstanceOf<CategoryService>());
@@ -26,7 +26,7 @@ namespace CarSystem.Data.Services.Tests.CategoryServiceTests
         public void Constructor_Should_ArgumentNullException_IfPassedDataProviderIsNull()
         {
             // Arrange & Act
-            IEfCarSystemDataProvider<Category> nullDataProvider = null;
+            IEfCarSystemDbSetCocoon<Category> nullDataProvider = null;
 
             // Assert
             Assert.Throws<ArgumentNullException>(

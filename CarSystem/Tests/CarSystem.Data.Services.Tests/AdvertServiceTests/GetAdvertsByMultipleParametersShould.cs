@@ -23,11 +23,12 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
             int yearFrom = 1958;
             int yearTo = 3000;
 
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
             // Act
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => new List<Advert>() {
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => new List<Advert>() {
                 new Advert { Id = 1, VehicleModelId = 1, CityId = 1, Price = 2, Year = 2000 },
                 new Advert { Id = 2, VehicleModelId = 1, CityId = 1, Price = 2, Year = 2000 },
                 new Advert { Id = 3, VehicleModelId = 1, CityId = 1, Price = 2, Year = 2000 },

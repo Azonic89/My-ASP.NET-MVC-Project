@@ -17,37 +17,40 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void GetAllAdverts_Should_BeCalled_IfParamsAreValid()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
             // Act
             advertService.GetAllAdverts();
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.All(), Times.Once);
+            mockedDbSet.Verify(rep => rep.All(), Times.Once);
         }
 
         [Test]
         public void GetAllAdverts_Should_NotBeCalled_IfItIsNeverCalled()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.All(), Times.Never);
+            mockedDbSet.Verify(rep => rep.All(), Times.Never);
         }
 
         [Test]
         public void GetAllAdverts_Should_ReturnIQueryable_IfCalled()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
             // Act
             IEnumerable<Advert> expectedAdvertsResult = new List<Advert>() { new Advert(), new Advert() };
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedAdvertsResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedAdvertsResult.AsQueryable());
 
             // Assert
             Assert.IsInstanceOf<IQueryable<Advert>>(advertService.GetAllAdverts());
@@ -57,12 +60,13 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void GetAllAdverts_Should_ReturnCorrectCollection_IfCalled()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
             // Act
             IEnumerable<Advert> expectedAdvertsResult = new List<Advert>() { new Advert(), new Advert() };
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedAdvertsResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedAdvertsResult.AsQueryable());
 
             // Assert
             Assert.AreEqual(advertService.GetAllAdverts(), expectedAdvertsResult);
@@ -72,12 +76,13 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void GetAllAdverts_Should_ReturnEmptyCollection_IfThereAreNoAdvertsAdded()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
             // Act
             IEnumerable<Advert> expectedAdvertsResult = new List<Advert>();
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedAdvertsResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedAdvertsResult.AsQueryable());
 
             // Assert
             Assert.IsEmpty(advertService.GetAllAdverts());
@@ -87,12 +92,13 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void GetAllAdverts_Should_ThrowArgumentNullException_IfPassedAdvertsAreNull()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
             // Act
             IEnumerable<Advert> expectedAdvertsResult = null;
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedAdvertsResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedAdvertsResult.AsQueryable());
 
             // Assert
             Assert.Throws<ArgumentNullException>(() => advertService.GetAllAdverts());

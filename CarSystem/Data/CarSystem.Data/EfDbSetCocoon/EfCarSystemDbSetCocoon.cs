@@ -8,11 +8,11 @@ using CarSystem.Data.Contracts;
 
 namespace CarSystem.Data.Repositories
 {
-    public class EfCarSystemDataProvider<T> : IEfCarSystemDataProvider<T> where T : class
+    public class EfCarSystemDbSetCocoon<T> : IEfCarSystemDbSetCocoon<T> where T : class
     {
-        public EfCarSystemDataProvider(ICarSystemDbContext carSystemDbContext)
+        public EfCarSystemDbSetCocoon(ICarSystemEfDbContext carSystemDbContext)
         {
-            Guard.WhenArgument(carSystemDbContext, nameof(ICarSystemDbContext)).IsNull().Throw();
+            Guard.WhenArgument(carSystemDbContext, nameof(ICarSystemEfDbContext)).IsNull().Throw();
 
             this.Context = carSystemDbContext;
             this.DbSet = this.Context.Set<T>();
@@ -20,7 +20,7 @@ namespace CarSystem.Data.Repositories
 
         public IDbSet<T> DbSet { get; set; }
 
-        public ICarSystemDbContext Context { get; set; }
+        public ICarSystemEfDbContext Context { get; set; }
 
         public virtual IQueryable<T> All()
         {
@@ -85,11 +85,6 @@ namespace CarSystem.Data.Repositories
             DbEntityEntry entry = this.Context.Entry(entity);
 
             entry.State = EntityState.Detached;
-        }
-
-        public int SaveChanges()
-        {
-            return this.Context.SaveChanges();
         }
 
         public void Dispose()

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace CarSystem.Data.Contracts
 {
-    public interface IEfCarSystemDataProvider<T> : IDisposable where T : class
+    public interface IEfCarSystemDbSetCocoon<T> : IDisposable where T : class
     {
         IQueryable<T> All();
 
@@ -16,9 +16,5 @@ namespace CarSystem.Data.Contracts
         void Delete(T entity);
 
         void Delete(int id);
-
-        void Detach(T entity);
-
-        int SaveChanges();
     }
 }

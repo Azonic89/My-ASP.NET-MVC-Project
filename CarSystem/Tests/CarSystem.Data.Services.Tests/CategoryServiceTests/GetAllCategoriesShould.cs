@@ -17,37 +17,37 @@ namespace CarSystem.Data.Services.Tests.CategoryServiceTests
         public void GetAllCategories_Should_BeCalled_IfParamsAreValid()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Category>>();
-            var categoryService = new CategoryService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Category>>();
+            var categoryService = new CategoryService(mockedDbSet.Object);
 
             // Act
             categoryService.GetAllCategories();
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.All(), Times.Once);
+            mockedDbSet.Verify(rep => rep.All(), Times.Once);
         }
 
         [Test]
         public void GetAllCategories_Should_NotBeCalled_IfItIsNeverCalled()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Category>>();
-            var categoryService = new CategoryService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Category>>();
+            var categoryService = new CategoryService(mockedDbSet.Object);
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.All(), Times.Never);
+            mockedDbSet.Verify(rep => rep.All(), Times.Never);
         }
 
         [Test]
         public void GetAllCategories_Should_ReturnIQueryable_IfCalled()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Category>>();
-            var categoryService = new CategoryService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Category>>();
+            var categoryService = new CategoryService(mockedDbSet.Object);
 
             // Act
             IEnumerable<Category> expectedCategoriesResult = new List<Category>() { new Category(), new Category() };
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedCategoriesResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedCategoriesResult.AsQueryable());
 
             // Assert
             Assert.IsInstanceOf<IQueryable<Category>>(categoryService.GetAllCategories());
@@ -57,12 +57,12 @@ namespace CarSystem.Data.Services.Tests.CategoryServiceTests
         public void GetAllCategories_Should_ReturnCorrectCollection_IfCalled()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Category>>();
-            var categoryService = new CategoryService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Category>>();
+            var categoryService = new CategoryService(mockedDbSet.Object);
 
             // Act
             IEnumerable<Category> expectedCategoriesResult = new List<Category>() { new Category(), new Category() };
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedCategoriesResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedCategoriesResult.AsQueryable());
 
             // Assert
             Assert.AreEqual(categoryService.GetAllCategories(), expectedCategoriesResult);
@@ -72,12 +72,12 @@ namespace CarSystem.Data.Services.Tests.CategoryServiceTests
         public void GetAllCategories_Should_ReturnEmptyCollection_IfThereAreNoAdvertsAdded()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Category>>();
-            var categoryService = new CategoryService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Category>>();
+            var categoryService = new CategoryService(mockedDbSet.Object);
 
             // Act
             IEnumerable<Category> expectedCategoriesResult = new List<Category>();
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedCategoriesResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedCategoriesResult.AsQueryable());
 
             // Assert
             Assert.IsEmpty(categoryService.GetAllCategories());
@@ -87,12 +87,12 @@ namespace CarSystem.Data.Services.Tests.CategoryServiceTests
         public void GetAllCategories_Should_ThrowArgumentNullException_IfPassedAdvertsAreNull()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Category>>();
-            var categoryService = new CategoryService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Category>>();
+            var categoryService = new CategoryService(mockedDbSet.Object);
 
             // Act
             IEnumerable<Category> expectedCategoriesResult = null;
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => expectedCategoriesResult.AsQueryable());
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => expectedCategoriesResult.AsQueryable());
 
             // Assert
             Assert.Throws<ArgumentNullException>(() => categoryService.GetAllCategories());

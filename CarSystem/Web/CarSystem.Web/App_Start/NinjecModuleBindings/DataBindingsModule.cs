@@ -20,7 +20,7 @@ namespace CarSystem.Web.App_Start.NinjecModuleBindings
                 .FromAssembliesMatching("CarSystem.Data.dll")
                 .SelectAllClasses()
                 .BindDefaultInterface()
-                .ConfigureFor<CarSystemDbContext>(c => c.InRequestScope());
+                .ConfigureFor<CarSystemEfDbContext>(c => c.InRequestScope());
         }
     }
 }

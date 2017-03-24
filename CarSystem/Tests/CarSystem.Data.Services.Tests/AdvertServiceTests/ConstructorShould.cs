@@ -15,22 +15,34 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void Constructor_Should_CreateAdvertServices_IfParamsAreValid()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
             // Assert
             Assert.That(advertService, Is.InstanceOf<AdvertService>());
         }
 
         [Test]
-        public void Constructor_Should_ArgumentNullException_IfPassedDataProviderIsNull()
+        public void Constructor_Should_ArgumentNullException_IfPassedDbSetIsNull()
         {
             // Arrange & Act
-            IEfCarSystemDataProvider<Advert> nullDataProvider = null;
+            IEfCarSystemDbSetCocoon<Advert> nullMockedSet = null;
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
 
             // Assert
             Assert.Throws<ArgumentNullException>(
-                () => new AdvertService(nullDataProvider));
+                () => new AdvertService(nullMockedSet, mockedSaveChanges.Object));
+        }
+
+        [Test]
+        public void Constuctor_Should_ThrowNullReferenceException_IfPassedEfSaveChangesIsNull()
+        {
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            Mock<ICarSystemEfDbContextSaveChanges> mockedNullSaveChanges = null;
+
+            Assert.Throws<NullReferenceException>(
+                () => new AdvertService(mockedDbSet.Object, mockedNullSaveChanges.Object));
         }
     }
 }

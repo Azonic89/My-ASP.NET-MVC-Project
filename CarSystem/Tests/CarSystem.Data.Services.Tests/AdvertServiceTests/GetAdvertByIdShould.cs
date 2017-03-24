@@ -15,38 +15,41 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void GetById_Should_BeCalledOnce_IfParamsAreValid()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             var advert = new Mock<Advert>();
 
             // Act
             advertService.GetById(advert.Object.Id);
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.GetById(advert.Object.Id), Times.Once);
+            mockedDbSet.Verify(rep => rep.GetById(advert.Object.Id), Times.Once);
         }
 
         [Test]
         public void GetById_Should_NotBeCalled_IfNotCalledYolo()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
             // Assert
-            mockedDataProvider.Verify(rep => rep.GetById(1), Times.Never);
+            mockedDbSet.Verify(rep => rep.GetById(1), Times.Never);
         }
 
         [Test]
         public void GetById_Should_ReturnTheProperAdvertWithId_IfCalled()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             var advertWithId = new Mock<Advert>();
 
             // Act
-            mockedDataProvider.Setup(rep => rep.GetById(advertWithId.Object.Id)).Returns(() => advertWithId.Object);
+            mockedDbSet.Setup(rep => rep.GetById(advertWithId.Object.Id)).Returns(() => advertWithId.Object);
 
             // Assert
             Assert.IsInstanceOf<Advert>(advertService.GetById(advertWithId.Object.Id));
@@ -56,12 +59,13 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void GetById_Should_Work_IfCalledWithValidParams()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             var advertWithId = new Mock<Advert>();
 
             // Act
-            mockedDataProvider.Setup(rep => rep.GetById(advertWithId.Object.Id)).Returns(() => advertWithId.Object);
+            mockedDbSet.Setup(rep => rep.GetById(advertWithId.Object.Id)).Returns(() => advertWithId.Object);
 
             // Assert
             Assert.AreEqual(advertService.GetById(advertWithId.Object.Id), advertWithId.Object);
@@ -71,8 +75,9 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void GetById_ShouldThrowNullReferenceException_IfAdvertIsNull()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             Mock<Advert> advertThatIsNull = null;
 
             // Assert
@@ -83,11 +88,12 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void GetById_Should_NotReturnAdvert_IfThereIsNoAdvertYolo()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
 
             // Act
-            mockedDataProvider.Setup(rep => rep.GetById(0)).Returns(() => null);
+            mockedDbSet.Setup(rep => rep.GetById(0)).Returns(() => null);
 
             // Assert
             Assert.IsNull(advertService.GetById(0));
@@ -97,13 +103,14 @@ namespace CarSystem.Data.Services.Tests.AdvertServiceTests
         public void GetById_Should_ReturnTheCorrectAdvert_IfCalled()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Advert>>();
-            var advertService = new AdvertService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Advert>>();
+            var mockedSaveChanges = new Mock<ICarSystemEfDbContextSaveChanges>();
+            var advertService = new AdvertService(mockedDbSet.Object, mockedSaveChanges.Object);
             var advert = new Mock<Advert>();
             var secondAdvert = new Mock<Advert>();
 
             // Act
-            mockedDataProvider.Setup(rep => rep.GetById(advert.Object.Id)).Returns(() => advert.Object);
+            mockedDbSet.Setup(rep => rep.GetById(advert.Object.Id)).Returns(() => advert.Object);
 
             // Assert
             Assert.AreNotEqual(advertService.GetById(advert.Object.Id), secondAdvert.Object);

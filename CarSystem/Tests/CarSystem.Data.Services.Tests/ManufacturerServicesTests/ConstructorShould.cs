@@ -15,8 +15,8 @@ namespace CarSystem.Data.Services.Tests.ManufacturerServicesTests
         public void Constructor_Should_CreateManufacturerServices_IfParamsAreValid()
         {
             // Arrange & Act
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<Manufacturer>>();
-            var manufacturerService = new ManufacturerService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<Manufacturer>>();
+            var manufacturerService = new ManufacturerService(mockedDbSet.Object);
 
             // Assert
             Assert.That(manufacturerService, Is.InstanceOf<ManufacturerService>());
@@ -26,7 +26,7 @@ namespace CarSystem.Data.Services.Tests.ManufacturerServicesTests
         public void Constructor_Should_ArgumentNullException_IfPassedDataProviderIsNull()
         {
             // Arrange & Act
-            IEfCarSystemDataProvider<Manufacturer> nullDataProvider = null;
+            IEfCarSystemDbSetCocoon<Manufacturer> nullDataProvider = null;
 
             // Assert
             Assert.Throws<ArgumentNullException>(

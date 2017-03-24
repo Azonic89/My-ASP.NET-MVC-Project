@@ -11,11 +11,11 @@ namespace CarSystem.Data.Tests.CarSystemDbContext.Tests
         public void Create_Should_ReturnNewDbContextInstance()
         {
             // Arrange & Act
-            var newContext = Data.CarSystemDbContext.Create();
+            var newContext = Data.CarSystemEfDbContext.Create();
 
             // Assert
             Assert.IsNotNull(newContext);
-            Assert.IsInstanceOf<ICarSystemDbContext>(newContext);
+            Assert.IsInstanceOf<ICarSystemEfDbContext>(newContext);
         }
     }
 }

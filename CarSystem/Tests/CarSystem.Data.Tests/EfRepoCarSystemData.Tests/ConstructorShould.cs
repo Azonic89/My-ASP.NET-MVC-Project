@@ -17,54 +17,54 @@ namespace CarSystem.Data.Tests.EfRepoCarSystemData.Tests
         public void Constructor_Should_ThrowArgumentNullException_IfDbContextPassedIsNull()
         {
             // Arrange
-            ICarSystemDbContext nullContext = null;
+            ICarSystemEfDbContext nullContext = null;
 
             // Act & Assert
-            Assert.That(() => new EfCarSystemDataProvider<IAdvert>(nullContext),
-                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICarSystemDbContext)));
+            Assert.That(() => new EfCarSystemDbSetCocoon<IAdvert>(nullContext),
+                Throws.InstanceOf<ArgumentNullException>().With.Message.Contains(nameof(ICarSystemEfDbContext)));
         }
 
         [Test]
         public void Constructor_Should_WorkCorrectly_IfDbContextPassedIsValid()
         {
             // Arrange
-            var mockedDbContext = new Mock<ICarSystemDbContext>();
+            var mockedDbContext = new Mock<ICarSystemEfDbContext>();
             var mockedModel = new Mock<DbSet<IAdvert>>();
 
             // Act
             mockedDbContext.Setup(x => x.Set<IAdvert>()).Returns(mockedModel.Object);
-            var dataProvider = new EfCarSystemDataProvider<IAdvert>(mockedDbContext.Object);
+            var mockedDbSet = new EfCarSystemDbSetCocoon<IAdvert>(mockedDbContext.Object);
 
             // Assert
-            Assert.That(dataProvider, Is.Not.Null);
+            Assert.That(mockedDbSet, Is.Not.Null);
         }
 
         [Test]
         public void Constructor_Should_SetContextCorrectly_WhenValidArgumentsPassed()
         {
             // Arrange
-            var mockedContext = new Mock<ICarSystemDbContext>();
+            var mockedContext = new Mock<ICarSystemEfDbContext>();
             var mockedModel = new Mock<DbSet<IAdvert>>();
 
             // Act
             mockedContext.Setup(x => x.Set<IAdvert>()).Returns(mockedModel.Object);
-            var dataProvider = new EfCarSystemDataProvider<IAdvert>(mockedContext.Object);
+            var mockedDbSet = new EfCarSystemDbSetCocoon<IAdvert>(mockedContext.Object);
 
             // Assert
-            Assert.That(dataProvider.Context, Is.Not.Null);
-            Assert.That(dataProvider.Context, Is.EqualTo(mockedContext.Object));
+            Assert.That(mockedDbSet.Context, Is.Not.Null);
+            Assert.That(mockedDbSet.Context, Is.EqualTo(mockedContext.Object));
         }
 
         [Test]
         public void Constructor_Should_SetDbSetCorrectly_WhenValidArgumentsPassed()
         {
             // Arrange
-            var mockedContext = new Mock<ICarSystemDbContext>();
+            var mockedContext = new Mock<ICarSystemEfDbContext>();
             var mockedModel = new Mock<DbSet<IAdvert>>();
 
             // Act
             mockedContext.Setup(x => x.Set<IAdvert>()).Returns(mockedModel.Object);
-            var repository = new EfCarSystemDataProvider<IAdvert>(mockedContext.Object);
+            var repository = new EfCarSystemDbSetCocoon<IAdvert>(mockedContext.Object);
 
             // Assert
             Assert.That(repository.DbSet, Is.Not.Null);

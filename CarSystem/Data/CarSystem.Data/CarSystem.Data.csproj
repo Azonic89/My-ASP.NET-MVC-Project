@@ -61,9 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CarSystemDbContext.cs" />
-    <Compile Include="Contracts\ICarSystemDbContext.cs" />
-    <Compile Include="Contracts\IEfCarSystemDataProvider.cs" />
+    <Compile Include="CarSystemEfDbContext.cs" />
+    <Compile Include="Contracts\ICarSystemEfDbContext.cs" />
+    <Compile Include="Contracts\ICarSystemEfDbContextSaveChanges.cs" />
+    <Compile Include="Contracts\IEfCarSystemDbSetCocoon.cs" />
     <Compile Include="Migrations\201703140329083_Initial.cs" />
     <Compile Include="Migrations\201703140329083_Initial.Designer.cs">
       <DependentUpon>201703140329083_Initial.cs</DependentUpon>
@@ -78,7 +79,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\EfCarSystemDataProvider.cs" />
+    <Compile Include="EfDbSetCocoon\EfCarSystemDbSetCocoon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -65,7 +65,6 @@
     <Compile Include="EfRepoCarSystemData.Tests\DetachShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\DisposeShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\GetByIdShould.cs" />
-    <Compile Include="EfRepoCarSystemData.Tests\SaveChangesShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\UpdateShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

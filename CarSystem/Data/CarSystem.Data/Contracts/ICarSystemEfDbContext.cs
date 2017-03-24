@@ -6,7 +6,7 @@ using CarSystem.Data.Models;
 
 namespace CarSystem.Data.Contracts
 {
-    public interface ICarSystemDbContext : IDisposable
+    public interface ICarSystemEfDbContext : IDisposable
     {
         IDbSet<User> Users { get; set; }
 
@@ -21,8 +21,6 @@ namespace CarSystem.Data.Contracts
         IDbSet<Manufacturer> Manufacturers { get; set; }
 
         IDbSet<VehicleModel> VehicleModels { get; set; }
-
-        int SaveChanges();
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 

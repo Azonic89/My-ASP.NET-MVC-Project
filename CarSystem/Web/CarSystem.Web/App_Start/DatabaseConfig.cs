@@ -9,8 +9,8 @@ namespace CarSystem.Web.App_Start
     {
         public static void Initialize()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<CarSystemDbContext, Configuration>());
-            CarSystemDbContext.Create().Database.CreateIfNotExists();
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<CarSystemEfDbContext, Configuration>());
+            CarSystemEfDbContext.Create().Database.CreateIfNotExists();
         }
     }
 }

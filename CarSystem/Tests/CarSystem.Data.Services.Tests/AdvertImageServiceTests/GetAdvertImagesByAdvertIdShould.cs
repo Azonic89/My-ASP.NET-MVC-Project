@@ -16,12 +16,12 @@ namespace CarSystem.Data.Services.Tests.AdvertImageServiceTests
         public void GetAdvertImagesByAdvertIdShould_ReturnCorrectAdvertImagesCount_WhenValidAdvertIdParameterIsPassed()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IEfCarSystemDataProvider<AdvertImage>>();
-            var pictureService = new AdvertImageService(mockedDataProvider.Object);
+            var mockedDbSet = new Mock<IEfCarSystemDbSetCocoon<AdvertImage>>();
+            var advertImageService = new AdvertImageService(mockedDbSet.Object);
             int testAdvertId = 1;
             int expectedResult = 2;
 
-            mockedDataProvider.Setup(rep => rep.All()).Returns(() => new List<AdvertImage>() {
+            mockedDbSet.Setup(rep => rep.All()).Returns(() => new List<AdvertImage>() {
                 new AdvertImage() { Id = 1, ImageName = "1.jpg", AdvertImageId = 1 },
                 new AdvertImage() { Id = 2, ImageName = "2.jpg", AdvertImageId = 2},
                 new AdvertImage() { Id = 3, ImageName = "3.jpg", AdvertImageId = 1 },
@@ -29,7 +29,7 @@ namespace CarSystem.Data.Services.Tests.AdvertImageServiceTests
             }.AsQueryable());
 
             // Act
-            var result = pictureService.GetAdvertImagesByAdvertId(testAdvertId);
+            var result = advertImageService.GetAdvertImagesByAdvertId(testAdvertId);
 
             // Assert
             Assert.AreEqual(expectedResult, result.ToList().Count);

@@ -10,23 +10,23 @@ namespace CarSystem.Data.Services
 {
     public class VehicleModelService : IVehicleModelService
     {
-        private readonly IEfCarSystemDataProvider<VehicleModel> vehicleModelDataProvider;
+        private readonly IEfCarSystemDbSetCocoon<VehicleModel> vehicleModelDbSetCocoon;
 
-        public VehicleModelService(IEfCarSystemDataProvider<VehicleModel> vehicleModelDataProvider)
+        public VehicleModelService(IEfCarSystemDbSetCocoon<VehicleModel> vehicleModelDbSetCocoon)
         {
-            Guard.WhenArgument(vehicleModelDataProvider, nameof(vehicleModelDataProvider)).IsNull().Throw();
+            Guard.WhenArgument(vehicleModelDbSetCocoon, nameof(vehicleModelDbSetCocoon)).IsNull().Throw();
 
-            this.vehicleModelDataProvider = vehicleModelDataProvider;
+            this.vehicleModelDbSetCocoon = vehicleModelDbSetCocoon;
         }
 
         public IQueryable<VehicleModel> GetAllVehicleModels()
         {
-            return this.vehicleModelDataProvider.All();
+            return this.vehicleModelDbSetCocoon.All();
         }
 
         public VehicleModel GetById(int id)
         {
-            return this.vehicleModelDataProvider.GetById(id);
+            return this.vehicleModelDbSetCocoon.GetById(id);
         }
     }
 }
