@@ -65,6 +65,7 @@
     <Compile Include="Contracts\ICarSystemEfDbContext.cs" />
     <Compile Include="Contracts\ICarSystemEfDbContextSaveChanges.cs" />
     <Compile Include="Contracts\IEfCarSystemDbSetCocoon.cs" />
+    <Compile Include="EfDbSetCocoon\CarSystemDbContextSaveChanges.cs" />
     <Compile Include="Migrations\201703140329083_Initial.cs" />
     <Compile Include="Migrations\201703140329083_Initial.Designer.cs">
       <DependentUpon>201703140329083_Initial.cs</DependentUpon>

@@ -4,6 +4,8 @@ using Ninject.Modules;
 using Ninject.Web.Common;
 
 using CarSystem.Data;
+using CarSystem.Data.Contracts;
+using CarSystem.Data.EfDbSetCocoon;
 
 namespace CarSystem.Web.App_Start.NinjecModuleBindings
 {
@@ -12,6 +14,8 @@ namespace CarSystem.Web.App_Start.NinjecModuleBindings
         public override void Load()
         {
             this.Bind(this.BindAllClasses);
+            this.Bind<ICarSystemEfDbContextSaveChanges>().To<CarSystemDbContextSaveChanges>().InRequestScope();
+
         }
 
         private void BindAllClasses(IFromSyntax bindings)
