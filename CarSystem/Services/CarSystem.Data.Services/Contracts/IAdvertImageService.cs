@@ -7,5 +7,7 @@ namespace CarSystem.Data.Services.Contracts
     public interface IAdvertImageService
     {
         IQueryable<AdvertImage> GetAdvertImagesByAdvertId(int advertId);
+
+        AdvertImage GetById(int? id);
     }
 }

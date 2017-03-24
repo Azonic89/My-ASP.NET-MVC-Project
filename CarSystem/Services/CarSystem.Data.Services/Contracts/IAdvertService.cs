@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 using CarSystem.Data.Models;
 
@@ -18,7 +20,11 @@ namespace CarSystem.Data.Services.Contracts
 
         IQueryable<Advert> GetAllAdvertsByUserId(string userId);
 
-        Advert GetById(int id);
+        Advert GetById(int? id);
+
+        void AddUploadedFilesToAdvert(Advert advert, IEnumerable<HttpPostedFileBase> uploadedFiles);
+
+        void CreateAdvert(Advert advert, IEnumerable<HttpPostedFileBase> uploadedFiles);
 
         void UpdateAdvert(Advert advert);
     }

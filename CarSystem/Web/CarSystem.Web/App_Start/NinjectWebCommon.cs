@@ -1,4 +1,6 @@
 using CarSystem.Web.App_Start.NinjecModuleBindings;
+using CarSystem.Web.Infrastucture;
+using CarSystem.Web.Infrastucture.Contracts;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(CarSystem.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(CarSystem.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -65,6 +67,7 @@ namespace CarSystem.Web.App_Start
         {
             kernel.Load(new DataBindingsModule());
             kernel.Load(new DataServicesBindingsModule());
+            kernel.Bind<IMappingService>().To<MappingService>().InRequestScope();
         }        
     }
 }

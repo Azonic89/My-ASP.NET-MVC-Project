@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
 
 using Bytes2you.Validation;
 
@@ -11,7 +14,7 @@ namespace CarSystem.Data.Services
     public class AdvertService : IAdvertService
     {
         private readonly IEfCarSystemDbSetCocoon<Advert> advertDbSetCocoon;
-        private readonly ICarSystemEfDbContextSaveChanges systemEfDbContextSaveChanges;
+        private readonly ICarSystemEfDbContextSaveChanges carSystemEfDbContextSaveChanges;
 
         public AdvertService(IEfCarSystemDbSetCocoon<Advert> advertDbSetCocoon, ICarSystemEfDbContextSaveChanges systemEfDbContextSaveChanges)
         {
@@ -19,7 +22,7 @@ namespace CarSystem.Data.Services
             Guard.WhenArgument(systemEfDbContextSaveChanges, nameof(systemEfDbContextSaveChanges)).IsNull().Throw();
 
             this.advertDbSetCocoon = advertDbSetCocoon;
-            this.systemEfDbContextSaveChanges = systemEfDbContextSaveChanges;
+            this.carSystemEfDbContextSaveChanges = systemEfDbContextSaveChanges;
         }
 
         public void AddAdvert(Advert advertToAdd)
@@ -27,7 +30,7 @@ namespace CarSystem.Data.Services
             Guard.WhenArgument(advertToAdd, nameof(advertToAdd)).IsNull().Throw();
 
             this.advertDbSetCocoon.Add(advertToAdd);
-            this.systemEfDbContextSaveChanges.SaveChanges();
+            this.carSystemEfDbContextSaveChanges.SaveChanges();
         }
 
         public void DeleteAdvert(Advert advertToDelete)
@@ -35,7 +38,7 @@ namespace CarSystem.Data.Services
             Guard.WhenArgument(advertToDelete, nameof(advertToDelete)).IsNull().Throw();
 
             this.advertDbSetCocoon.Delete(advertToDelete);
-            this.systemEfDbContextSaveChanges.SaveChanges();
+            this.carSystemEfDbContextSaveChanges.SaveChanges();
         }
 
         public void DeleteAdvertById(object advertId)
@@ -43,7 +46,7 @@ namespace CarSystem.Data.Services
             Guard.WhenArgument(advertId, nameof(advertId)).IsNull().Throw();
 
             this.advertDbSetCocoon.Delete((int)advertId);
-            this.systemEfDbContextSaveChanges.SaveChanges();
+            this.carSystemEfDbContextSaveChanges.SaveChanges();
         }
 
         public IQueryable<Advert> GetAllAdverts()
@@ -51,7 +54,7 @@ namespace CarSystem.Data.Services
             return this.advertDbSetCocoon.All();
         }
 
-        public Advert GetById(int id)
+        public Advert GetById(int? id)
         {
             return this.advertDbSetCocoon.GetById(id);
         }
@@ -73,7 +76,7 @@ namespace CarSystem.Data.Services
         public void UpdateAdvert(Advert advert)
         {
             this.advertDbSetCocoon.Update(advert);
-            this.systemEfDbContextSaveChanges.SaveChanges();
+            this.carSystemEfDbContextSaveChanges.SaveChanges();
         }
 
         public IQueryable<Advert> GetAllAdvertsByUserId(string userId)
@@ -83,6 +86,43 @@ namespace CarSystem.Data.Services
                 .Where(a => a.UserId == userId);
 
             return adverts;
+        }
+
+        public void AddUploadedFilesToAdvert(Advert advert, IEnumerable<HttpPostedFileBase> uploadedFiles)
+        {
+            Guard.WhenArgument(advert, nameof(advert)).IsNull().Throw();
+
+            if (uploadedFiles != null)
+            {
+                foreach (HttpPostedFileBase file in uploadedFiles)
+                {
+                    if (file == null || file.ContentLength <= 0) continue;
+                    var advertImage = new AdvertImage
+                    {
+                        ImageName = Path.GetFileName(file.FileName),
+                    };
+
+                    using (var reader = new BinaryReader(file.InputStream))
+                    {
+                        advertImage.ImageData = reader.ReadBytes(file.ContentLength);
+                    }
+
+                    advert.AdvertImages.Add(advertImage);
+                }
+            }
+        }
+
+        public void CreateAdvert(Advert advert, IEnumerable<HttpPostedFileBase> uploadedFiles)
+        {
+            Guard.WhenArgument(advert, nameof(advert)).IsNull().Throw();
+
+            if (uploadedFiles != null && uploadedFiles.Count() > 0)
+            {
+                this.AddUploadedFilesToAdvert(advert, uploadedFiles);
+            }
+
+            this.advertDbSetCocoon.Add(advert);
+            this.carSystemEfDbContextSaveChanges.SaveChanges();
         }
     }
 }
