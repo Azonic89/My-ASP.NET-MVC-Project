@@ -84,6 +84,8 @@
     <Compile Include="AdvertControllerTests\CreatePostShould.cs" />
     <Compile Include="AdvertControllerTests\DetailShould.cs" />
     <Compile Include="AdvertControllerTests\IndexShould.cs" />
+    <Compile Include="AdvertImageControllerTests\ConstructorShould.cs" />
+    <Compile Include="AdvertImageControllerTests\IndexShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
