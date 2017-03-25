@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSystem.Data.Services", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSystem.Data.Services.Tests", "Tests\CarSystem.Data.Services.Tests\CarSystem.Data.Services.Tests.csproj", "{605290AD-146F-43A6-A509-ADE54B1D5F71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSystem.Web.Controllers.Tests", "Tests\CarSystem.Web.Controllers.Tests\CarSystem.Web.Controllers.Tests.csproj", "{91899722-06BC-436B-875E-F0B85F6B31D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{605290AD-146F-43A6-A509-ADE54B1D5F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{605290AD-146F-43A6-A509-ADE54B1D5F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{605290AD-146F-43A6-A509-ADE54B1D5F71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91899722-06BC-436B-875E-F0B85F6B31D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91899722-06BC-436B-875E-F0B85F6B31D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91899722-06BC-436B-875E-F0B85F6B31D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91899722-06BC-436B-875E-F0B85F6B31D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,5 +102,6 @@ Global
 		{6BC9DCA7-7EB3-4412-A7C3-28E0D1C7A0A9} = {2486B72D-15CA-49A8-920B-07CC626511F1}
 		{9D51A488-6D4D-4D3B-AA42-BD49F0365B47} = {88CFD61D-6DA8-4C77-B927-3E6DD8F395B6}
 		{605290AD-146F-43A6-A509-ADE54B1D5F71} = {E564EB11-3538-4DB6-84E7-EAD50CF434DA}
+		{91899722-06BC-436B-875E-F0B85F6B31D5} = {E564EB11-3538-4DB6-84E7-EAD50CF434DA}
 	EndGlobalSection
 EndGlobal

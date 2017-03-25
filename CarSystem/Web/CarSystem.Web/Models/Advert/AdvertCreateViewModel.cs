@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CarSystem.Web.Infrastucture.Contracts;
 
 namespace CarSystem.Web.Models.Advert
 {
-    public class AdvertCreateViewModel
+    public class AdvertCreateViewModel : IMapFrom<Data.Models.Advert>
     {
         public string Title { get; set; }
 
