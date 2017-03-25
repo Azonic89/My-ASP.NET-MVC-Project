@@ -16,6 +16,17 @@ namespace CarSystem.Web
             routes.LowercaseUrls = true;
 
             routes.MapRoute(
+                name: "Display advert",
+                url: "adverts/{id}/{url}",
+                defaults: new { controller = "Advert", action = "Detail" });
+
+            routes.MapRoute(
+                name: "Adverts list",
+                url: "adverts/{model}/{id}",
+                defaults: new { controller = "Advert", action = "Index", id = UrlParameter.Optional }
+
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Bytes2you.Validation;
 using CarSystem.Data.Models;
 using CarSystem.Data.Services.Contracts;
@@ -16,17 +18,56 @@ namespace CarSystem.Web.Controllers
     public class AdvertController : Controller
     {
         private readonly IAdvertService advertService;
+        private readonly IMappingService mappingService;
 
         public AdvertController(IAdvertService advertService, IMappingService mappingService)
         {
             Guard.WhenArgument(advertService, nameof(advertService)).IsNull().Throw();
+            Guard.WhenArgument(mappingService, nameof(mappingService)).IsNull().Throw();
 
             this.advertService = advertService;
+            this.mappingService = mappingService;
         }
-        // GET: Advert
-        public ActionResult Index()
+        
+        [HttpGet]
+        public ActionResult Index(AdvertSearchViewModel model)
         {
-            return View();
+            if (model == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                this.TempData["Notification"] = "Exception.";
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            try
+            {
+                var adverts = advertService.Search(
+                    model.VehicleModelId,
+                    model.CityId,
+                    model.MinYear,
+                    model.MaxYear,
+                    model.MinPrice,
+                    model.MaxPrice,
+                    model.MinPower,
+                    model.MaxPower,
+                    model.MinDistanceCoverage,
+                    model.MaxDistanceCoverage);
+
+                var adv = adverts.ProjectTo<AdvertDetailViewModel>().ToList();
+
+                return View(adv);
+            }
+            catch (Exception e)
+            {
+                this.TempData["Notification"] = "Exeption.";
+
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpGet]
@@ -58,7 +99,8 @@ namespace CarSystem.Web.Controllers
                 Power = model.Power,
                 DistanceCoverage = model.DistanceCoverage,
                 CityId = model.CityId,
-                Description = model.Description
+                Description = model.Description,
+                //CreatedOn = DateTime.Now
             };
 
             try
@@ -75,6 +117,26 @@ namespace CarSystem.Web.Controllers
             this.TempData["Notification"] = "Successfully Created An Advert!!!";
 
             return Redirect("/");
+        }
+
+        [HttpGet]
+        public ActionResult Detail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var advert = this.advertService.GetById(id);
+
+            if (advert == null)
+            {
+                return HttpNotFound();
+            }
+
+            var advertView = this.mappingService.Map<AdvertDetailViewModel>(advert);
+
+            return View(advertView);
         }
     }
 }

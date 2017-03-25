@@ -196,6 +196,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdvertImageController.cs" />
     <Compile Include="Controllers\AdvertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -212,7 +213,9 @@
     <Compile Include="Models\Account\SendCodeViewModel.cs" />
     <Compile Include="Models\Account\VerifyCodeViewModel.cs" />
     <Compile Include="Models\Advert\AdvertCreateViewModel.cs" />
+    <Compile Include="Models\Advert\AdvertDetailViewModel.cs" />
     <Compile Include="Models\Advert\AdvertImageViewModel.cs" />
+    <Compile Include="Models\Advert\AdvertSearchViewModel.cs" />
     <Compile Include="Models\Category\CategoryViewModel.cs" />
     <Compile Include="Models\City\CityViewModel.cs" />
     <Compile Include="Models\Manage\AddPhoneNumberViewModel.cs" />
@@ -296,9 +299,12 @@
     <Content Include="Views\Shared\_CarouselPartial.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
     <Content Include="Views\Advert\Create.cshtml" />
+    <Content Include="Views\Advert\Index.cshtml" />
+    <Content Include="Views\Advert\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AdvertImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

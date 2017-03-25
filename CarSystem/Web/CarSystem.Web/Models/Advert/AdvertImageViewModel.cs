@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using CarSystem.Data.Models;
+using CarSystem.Web.Infrastucture.Contracts;
 
 namespace CarSystem.Web.Models.Advert
 {
-    public class AdvertImageViewModel
+    public class AdvertImageViewModel : IMapFrom<AdvertImage>
     {
         public int Id { get; set; }
 

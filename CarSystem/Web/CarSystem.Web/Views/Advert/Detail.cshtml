@@ -1,0 +1,32 @@
+﻿@model CarSystem.Web.Models.Advert.AdvertDetailViewModel
+@{
+    ViewBag.Title = "Advert detail!";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div>
+    This is title of our advert: @Model.Title
+</div>
+
+@if (Model.AdvertImages.Any())
+{
+    var images = Model.AdvertImages;
+    foreach (var image in images)
+    {
+        <dt>
+            Image
+        </dt>
+        <dd>
+            <img class="car-img" src="~/AdvertImage/Index?id=@image.Id" alt="image"/>
+        </dd>
+    }
+}
+
+<style>
+    .car-img {
+        width: 250px;
+        height: 250px;
+    }
+</style>
+

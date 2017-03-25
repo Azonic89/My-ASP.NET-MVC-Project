@@ -1,0 +1,19 @@
+﻿@model  IEnumerable<CarSystem.Web.Models.Advert.AdvertDetailViewModel>
+
+@{
+    ViewBag.Title = "Adverts list";
+}
+
+<h1>@ViewBag.Title</h1>
+<div class="container">
+    @foreach (var advert in Model)
+    {
+        <div class="col-md-10">
+            <div class="row">
+                <h4>
+                    <a href="@advert.Url">@advert.Title</a>
+                </h4>
+            </div>
+        </div>
+    }
+</div>
