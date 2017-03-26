@@ -79,12 +79,6 @@ namespace CarSystem.Data.Services
             this.carSystemEfDbContextSaveChanges.SaveChanges();
         }
 
-        //public int UpdateAdvert(Advert advert)
-        //{
-        //    this.advertDbSetCocoon.Update(advert);
-        //    return this.carSystemEfDbContextSaveChanges.SaveChanges();
-        //}
-
         public IQueryable<Advert> GetAllAdvertsByUserId(string userId)
         {
             var adverts = this.advertDbSetCocoon
@@ -132,26 +126,29 @@ namespace CarSystem.Data.Services
         }
 
         public IQueryable<Advert> Search(
-                int vehicleModelId,
-                int cityId,
-                int minYear,
-                int maxYear,
-                decimal minPrice,
-                decimal maxPrice,
-                int minPower,
-                int maxPower,
-                int minDistanceCoverage,
-                int maxDistanceCoverage)
+                int? vehicleModelId,
+                int? cityId,
+                int? minYear,
+                int? maxYear,
+                decimal? minPrice,
+                decimal? maxPrice,
+                int? minPower,
+                int? maxPower,
+                int? minDistanceCoverage,
+                int? maxDistanceCoverage)
         {
             var adverts = this.advertDbSetCocoon
                 .All()
-                .Where(a => a.VehicleModelId == vehicleModelId &&
-                            a.CityId == cityId &
-                            a.Year >= minYear && a.Year <= maxYear &&
-                            a.Price >= minPrice && a.Price <= maxPrice &&
-                            a.Power >= minPower && a.Power <= maxPower &&
-                            a.DistanceCoverage >= minDistanceCoverage &&
-                            a.DistanceCoverage <= maxDistanceCoverage);
+                .Where(a => a.VehicleModelId == (vehicleModelId ?? a.VehicleModelId) &&
+                       a.CityId == (cityId ?? a.CityId) &&
+                       a.Year >= (minYear ?? a.Year) &&
+                       a.Year <= (maxYear ?? a.Year) &&
+                       a.Price >= (minPrice ?? a.Price) &&
+                       a.Price <= (maxPrice ?? a.Price) &&
+                       a.Power >= (minPower ?? a.Power) &&
+                       a.Power <= (maxPower ?? a.Power) &&
+                       a.DistanceCoverage >= (minDistanceCoverage ?? a.DistanceCoverage) &&
+                       a.DistanceCoverage <= (maxDistanceCoverage ?? a.DistanceCoverage)); ;
 
             return adverts;
         }

@@ -29,15 +29,15 @@ namespace CarSystem.Data.Services.Contracts
         void UpdateAdvert(Advert advert);
 
         IQueryable<Advert> Search(
-            int vehicleModelId,
-            int cityId,
-            int minYear,
-            int maxYear,
-            decimal minPrice,
-            decimal maxPrice,
-            int minPower,
-            int maxPower,
-            int minDistanceCoverage,
-            int maxDistanceCoverage);
+            int? vehicleModelId,
+            int? cityId,
+            int? minYear,
+            int? maxYear,
+            decimal? minPrice,
+            decimal? maxPrice,
+            int? minPower,
+            int? maxPower,
+            int? minDistanceCoverage,
+            int? maxDistanceCoverage);
     }
 }

@@ -9,87 +9,88 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.CategoryId, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.DropDownList("CategoryId", ViewBag.Categories as SelectList, "All")
+    <div class="jumbotron">
+        <div class="form-group">
+            @Html.LabelFor(m => m.CategoryId, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.DropDownList("CategoryId", ViewBag.Categories as SelectList, "All")
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ManufacturerId, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.DropDownList("ManufacturerId", ViewBag.Manufacturers as SelectList, "All")
+        <div class="form-group">
+            @Html.LabelFor(m => m.ManufacturerId, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.DropDownList("ManufacturerId", ViewBag.Manufacturers as SelectList, "All")
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.VehicleModelId, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.DropDownList("VehicleModelId", ViewBag.VehicleModels as SelectList, "All")
+        <div class="form-group">
+            @Html.LabelFor(m => m.VehicleModelId, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.DropDownList("VehicleModelId", ViewBag.VehicleModels as SelectList, "All")
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.CityId, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.DropDownList("CityId", ViewBag.Cities as SelectList, "All")
+        <div class="form-group">
+            @Html.LabelFor(m => m.CityId, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.DropDownList("CityId", ViewBag.Cities as SelectList, "All")
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.MinYear, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.DropDownListFor(m => m.MinYear, ViewBag.Years as SelectList, "year")
+        <div class="form-group">
+            @Html.LabelFor(m => m.MinYear, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(m => m.MinYear, ViewBag.Years as SelectList, "year")
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.MaxYear, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.DropDownListFor(m => m.MaxYear, ViewBag.Years as SelectList, "year")
+        <div class="form-group">
+            @Html.LabelFor(m => m.MaxYear, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(m => m.MaxYear, ViewBag.Years as SelectList, "year")
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.MinPrice, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.EditorFor(m => m.MinPrice, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.MinPrice, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.EditorFor(m => m.MinPrice, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.MaxPrice, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.EditorFor(m => m.MaxPrice, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.MaxPrice, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.EditorFor(m => m.MaxPrice, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.MinPower, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.EditorFor(m => m.MinPower, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.MinPower, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.EditorFor(m => m.MinPower, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.MaxPower, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.EditorFor(m => m.MaxPower, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.MaxPower, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.EditorFor(m => m.MaxPower, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.MinDistanceCoverage, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.EditorFor(m => m.MinDistanceCoverage, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.MinDistanceCoverage, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.EditorFor(m => m.MinDistanceCoverage, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.MaxDistanceCoverage, new { @class = "col-md-2 control-label" })
-        <div class="col-md-5">
-            @Html.EditorFor(m => m.MaxDistanceCoverage, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.MaxDistanceCoverage, new { @class = "col-lg-2 control-label" })
+            <div class="col-md-5">
+                @Html.EditorFor(m => m.MaxDistanceCoverage, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-primary" value="Search" />
+            <input type="reset" class="btn btn-default" value="Cancel" />
         </div>
     </div>
 }

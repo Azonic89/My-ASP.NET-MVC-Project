@@ -57,11 +57,11 @@ namespace CarSystem.Web.Controllers
                     model.MinPower,
                     model.MaxPower,
                     model.MinDistanceCoverage,
-                    model.MaxDistanceCoverage);
+                    model.MaxDistanceCoverage)
+                 .OrderBy(a => a.Id)
+                 .ProjectTo<AdvertDetailViewModel>().ToList();
 
-                var adv = adverts.ProjectTo<AdvertDetailViewModel>().ToList();
-
-                return View(adv);
+                return View(adverts);
             }
             catch (Exception e)
             {
