@@ -77,9 +77,9 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
 
             // Act & Assert
             mockedAdvertService.Verify(a => a.Search(
-                                                    It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(),
-                                                    It.IsAny<int>(), It.IsAny<decimal>(), It.IsAny<decimal>(),
-                                                    It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+                                                    It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>(),
+                                                    It.IsAny<int?>(), It.IsAny<decimal?>(), It.IsAny<decimal?>(),
+                                                    It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>()), Times.Once);
         }
 
         [Test]
