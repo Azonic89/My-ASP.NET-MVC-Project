@@ -6,6 +6,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link rel="icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/jqgrid")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -45,8 +47,8 @@
         </div>
     </main>
     @Html.Partial("_FooterPartial")
-
-    @Scripts.Render("~/bundles/jquery")
+    
+    @Scripts.Render("~/bundles/gridlocEn")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

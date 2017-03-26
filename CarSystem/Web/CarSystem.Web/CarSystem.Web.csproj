@@ -663,8 +663,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <None Include="Properties\PublishProfiles\car-system - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\car-system - Web Deploy.pubxml" />
