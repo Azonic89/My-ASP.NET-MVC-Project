@@ -35,6 +35,7 @@
       <HintPath>..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -86,12 +87,18 @@
     <Compile Include="AdvertControllerTests\IndexShould.cs" />
     <Compile Include="AdvertImageControllerTests\ConstructorShould.cs" />
     <Compile Include="AdvertImageControllerTests\IndexShould.cs" />
+    <Compile Include="HomeController\ConstructorShould.cs" />
+    <Compile Include="HomeController\IndexShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\CarSystem.Data.Models\CarSystem.Data.Models.csproj">
       <Project>{73b4c924-58b7-4795-b59a-df067bf50bc8}</Project>
       <Name>CarSystem.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\CarSystem.Data\CarSystem.Data.csproj">
+      <Project>{7ec1337a-faac-4d1f-827a-a3d179cb8880}</Project>
+      <Name>CarSystem.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\CarSystem.Data.Services\CarSystem.Data.Services.csproj">
       <Project>{9d51a488-6d4d-4d3b-aa42-bd49f0365b47}</Project>
