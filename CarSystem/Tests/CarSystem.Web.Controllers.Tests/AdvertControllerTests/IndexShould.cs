@@ -142,7 +142,7 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
             advertController.Index(new AdvertSearchViewModel());
 
             // Assert
-            Assert.AreEqual(advertController.TempData["Notification"], "Exeption.");
+            Assert.AreEqual(advertController.TempData["Notification"], "Exception.");
         }
 
         [Test]

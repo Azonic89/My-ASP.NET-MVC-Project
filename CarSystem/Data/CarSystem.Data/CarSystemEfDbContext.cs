@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -38,6 +39,15 @@ namespace CarSystem.Data
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             base.OnModelCreating(modelBuilder);
+            this.OnAdvertDeleteing(modelBuilder);
+        }
+
+        private void OnAdvertDeleteing(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Advert>()
+                .HasMany(a => a.AdvertImages)
+                .WithRequired(b => b.Advert)
+                .WillCascadeOnDelete(true);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace CarSystem.Web.Controllers
             var vehicleModels = vehicleModelService.GetAllVehicleModels().ProjectTo<VehicleModelViewModel>().ToList();
             var manufacturers = manufacturerService.GetAllManufacturers().ProjectTo<ManufacturerViewModel>().ToList();
             var cities = cityService.GetAllCities().ProjectTo<CityViewModel>().ToList();
-            var years = this.YearGenerator(1950, DateTime.Now.Year);
+            var years = this.GetYears(1950);
 
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
             ViewBag.Manufacturers = new SelectList(manufacturers, "Id", "Name");
@@ -68,23 +68,18 @@ namespace CarSystem.Web.Controllers
             return View();
         }
 
-        private IEnumerable<decimal> YearGenerator(decimal min, decimal max)
+        private IEnumerable<int> GetYears(int? minYear = 1980)
         {
-            if (min > max)
+            var years = new List<int>();
+            var lastYear = DateTime.Now.Year;
+
+            while (lastYear >= minYear)
             {
-                var temp = min;
-                min = max;
-                max = temp;
+                years.Add(lastYear);
+                lastYear--;
             }
 
-            var numbers = new List<decimal>();
-
-            for (decimal i = max; i >= min; i--)
-            {
-                numbers.Add(i);
-            }
-
-            return numbers;
+            return years;
         }
     }
 }

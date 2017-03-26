@@ -79,6 +79,12 @@ namespace CarSystem.Data.Services
             this.carSystemEfDbContextSaveChanges.SaveChanges();
         }
 
+        //public int UpdateAdvert(Advert advert)
+        //{
+        //    this.advertDbSetCocoon.Update(advert);
+        //    return this.carSystemEfDbContextSaveChanges.SaveChanges();
+        //}
+
         public IQueryable<Advert> GetAllAdvertsByUserId(string userId)
         {
             var adverts = this.advertDbSetCocoon
@@ -138,14 +144,14 @@ namespace CarSystem.Data.Services
                 int maxDistanceCoverage)
         {
             var adverts = this.advertDbSetCocoon
-                .All();
-            //.Where(a => a.VehicleModelId == model.VehicleModelId &&
-            //            a.CityId == model.CityId &&
-            //            a.Year >= model.MinYear && a.Year <= model.MaxPower &&
-            //            a.Price >= model.MinPrice && a.Price <= model.MaxPrice &&
-            //            a.Power >= model.MinPower && a.Power <= model.MaxPower &&
-            //            a.DistanceCoverage >= model.MinDistanceCoverage &&
-            //            a.DistanceCoverage <= model.MaxDistanceCoverage)
+                .All()
+                .Where(a => a.VehicleModelId == vehicleModelId &&
+                            a.CityId == cityId &
+                            a.Year >= minYear && a.Year <= maxYear &&
+                            a.Price >= minPrice && a.Price <= maxPrice &&
+                            a.Power >= minPower && a.Power <= maxPower &&
+                            a.DistanceCoverage >= minDistanceCoverage &&
+                            a.DistanceCoverage <= maxDistanceCoverage);
 
             return adverts;
         }

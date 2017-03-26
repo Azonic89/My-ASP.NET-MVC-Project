@@ -1,0 +1,85 @@
+﻿<div>
+    <table id="grid"></table>
+    <div id="pager"></div>
+</div>
+
+
+<script>
+    $(function () {
+        $('#grid').jqGrid({
+            url: '/Admin/Admin/GetAllAdverts',
+            datatype: 'json',
+            mtype: 'Get',
+            colNames: ["Id", "Title", "Year", "Price", "Power", "Distance Coverage", "Description"],
+            colModel: [
+                { name: "Id", key: true, index: 'Id', hidden: true, editable: true },
+                { name: "Title", index: 'Title', align: 'center', editable: true },
+                { name: "Year", index: 'Year', align: 'right', editable: true },
+                { name: "Price", index: 'Price', align: 'right', editable: true },
+                { name: "Power", index: 'Power', align: 'right', editable: true },
+                { name: "DistanceCoverage", index: 'DistanceCoverage', align: 'right', editable: true },
+                { name: "Description", index: 'Description', align: 'center', editable: true }
+            ],
+
+            height: 'auto',
+            autoWidth: 'true',
+            rowNum: 20,
+            loadonce: true,
+            rowList: [5, 10, 15],
+            pager: 'pager',
+            sortName: 'Title',
+            viewrecords: true,
+            sortorder: 'asc',
+            caption: 'List of Adverts',
+            emptyrecords: 'No Adverts to Display Mister Admin',
+            jsonreader: {
+                repeatitems: false,
+                Id: '0'
+            },
+            multiselect: false
+        }).navGrid('#pager', { edit: true, add: false, del: true, search: true, refresh: true },
+            {
+                // EDIT
+                width: 600,
+                url: '@Url.Action("UpdateAdvert", "Admin")',
+                closeAfterEdit: true,
+                afterComplete: function (response) {
+                    $('#grid').setGridParam({ datatype: 'json', page: 1 }).trigger('reloadGrid');
+                    alert(response.responseText);
+                }
+            },
+            {
+                @*// ADD
+                width: 600,
+                url: '@Url.Action("AddAdvert", "Admin")',
+                mtype: 'Post',
+                closeAfterAdd: true,
+                afterComplete: function (response) {
+                    $('#grid').setGridParam({ datatype: 'json', page: 1 }).trigger('reloadGrid');
+                    alert(response.responseText);
+                }*@
+            },
+            {
+                // DELETE
+                width: 600,
+                url: '@Url.Action("DeleteAdvert", "Admin")',
+                mtype: 'Post',
+                caption: 'Delete',
+                bSubmit: 'Delete',
+                bCancel: 'Cancel',
+                msg: 'Delete Selected Advert?',
+                closeAfterDelete: true,
+                afterComplete: function (response) {
+                    $('#grid').setGridParam({ datatype: 'json', page: 1 }).trigger('reloadGrid');
+                    alert(response.responseText);
+                }
+            },
+            {
+                // SEARCH
+                width: 600,
+                multipleSearch: true
+
+            }
+        );
+    });
+</script>

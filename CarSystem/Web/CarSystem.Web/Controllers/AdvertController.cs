@@ -4,14 +4,15 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using AutoMapper;
+using Microsoft.AspNet.Identity;
+
 using AutoMapper.QueryableExtensions;
 using Bytes2you.Validation;
+
 using CarSystem.Data.Models;
 using CarSystem.Data.Services.Contracts;
 using CarSystem.Web.Infrastucture.Contracts;
 using CarSystem.Web.Models.Advert;
-using Microsoft.AspNet.Identity;
 
 namespace CarSystem.Web.Controllers
 {
@@ -64,7 +65,7 @@ namespace CarSystem.Web.Controllers
             }
             catch (Exception e)
             {
-                this.TempData["Notification"] = "Exeption.";
+                this.TempData["Notification"] = "Exception.";
 
                 return RedirectToAction("Index", "Home");
             }
@@ -100,7 +101,6 @@ namespace CarSystem.Web.Controllers
                 DistanceCoverage = model.DistanceCoverage,
                 CityId = model.CityId,
                 Description = model.Description,
-                //CreatedOn = DateTime.Now
             };
 
             try

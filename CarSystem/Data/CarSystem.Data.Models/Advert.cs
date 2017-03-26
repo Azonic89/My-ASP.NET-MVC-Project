@@ -58,6 +58,7 @@ namespace CarSystem.Data.Models
         [MaxLength(ModelsValidationConstants.AdvertDescriptionMaxLength)]
         public string Description { get; set; }
 
+        
         public virtual ICollection<AdvertImage> AdvertImages
         {
             get { return this.advertImages; }

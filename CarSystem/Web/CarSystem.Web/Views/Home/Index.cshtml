@@ -38,13 +38,13 @@
     <div class="form-group">
         @Html.LabelFor(m => m.MinYear, new { @class = "col-md-2 control-label" })
         <div class="col-md-5">
-            @Html.DropDownList("year", ViewBag.Years as SelectList)
+            @Html.DropDownListFor(m => m.MinYear, ViewBag.Years as SelectList, "year")
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.MaxYear, new { @class = "col-md-2 control-label" })
         <div class="col-md-5">
-            @Html.DropDownList("year", ViewBag.Years as SelectList)
+            @Html.DropDownListFor(m => m.MaxYear, ViewBag.Years as SelectList, "year")
         </div>
     </div>
 
