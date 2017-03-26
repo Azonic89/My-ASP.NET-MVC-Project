@@ -1,32 +1,47 @@
 ﻿@model CarSystem.Web.Models.Advert.AdvertDetailViewModel
 @{
-    ViewBag.Title = "Advert detail!";
+    ViewBag.Title = "Advert details";
 }
 
 <h1>@ViewBag.Title</h1>
 
-<div>
-    This is title of our advert: @Model.Title
+<div class="well well-sm">
+    <h3 class="text-center text-info">@ViewBag.Title</h3>
 </div>
+<div class="jumbotron">
 
-@if (Model.AdvertImages.Any())
-{
-    var images = Model.AdvertImages;
-    foreach (var image in images)
+    @if (Model.AdvertImages.Any())
     {
-        <dt>
-            Image
-        </dt>
-        <dd>
-            <img class="car-img" src="~/AdvertImage/Index?id=@image.Id" alt="image"/>
-        </dd>
-    }
-}
+        var images = Model.AdvertImages;
+        <h3>Images</h3>
+        foreach (var image in images)
+        {
+            <div class="well">
+                <img class="car-img img-responsive" src="~/AdvertImage/Index?id=@image.Id" alt="image" />
+            </div>
+        }
 
-<style>
-    .car-img {
-        width: 250px;
-        height: 250px;
     }
-</style>
+    <div class="list-group-item">
+        <h2>Price: @Model.Price</h2>
+        <div>
+            <div class="form-group">
+                <span>Year:</span>
+                <strong>@Model.Year</strong>
+            </div>
+            <div class="form-group">
+                <span>Power:</span>
+                <strong>@Model.Power</strong>
+            </div>
+            <div class="form-group">
+                <span>Distance Coverage:</span>
+                <strong>@Model.DistanceCoverage</strong>
+            </div>
+        </div>
+        <div class="form-group">
+            <span>Description:</span>
+            <span>@Model.Description</span>
+        </div>
+    </div>
+</div>
 

@@ -54,20 +54,6 @@ namespace CarSystem.Web.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         private IEnumerable<int> GetYears(int? minYear = 1980)
         {
             var years = new List<int>();

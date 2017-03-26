@@ -2,8 +2,9 @@
 @{
     ViewBag.Title = "Create an Advert";
 }
-
-<h1>@ViewBag.Title</h1>
+<div class="well well-sm">
+    <h3 class="text-center text-info">@ViewBag.Title</h3>
+</div>
 
 @using (Html.BeginForm("Create", "Advert", null, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {

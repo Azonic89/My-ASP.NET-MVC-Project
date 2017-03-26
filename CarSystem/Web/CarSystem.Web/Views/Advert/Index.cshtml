@@ -4,7 +4,9 @@
     ViewBag.Title = "Adverts list";
 }
 
-<h1>@ViewBag.Title</h1>
+<div class="well well-sm">
+    <h3 class="text-center text-info">@ViewBag.Title</h3>
+</div>
 <div class="container">
     @foreach (var advert in Model)
     {
