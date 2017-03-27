@@ -46,9 +46,9 @@ namespace CarSystem.Web
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");          
+            app.UseFacebookAuthentication(
+               appId: "255049828289521",
+               appSecret: "c35585df48c41553b429492e65ef797f");
         }
     }
 }

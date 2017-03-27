@@ -35,10 +35,17 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
 
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
             mockedAdvertService.Setup(a => a.CreateAdvert(It.IsAny<Advert>(), It.IsAny<IEnumerable<HttpPostedFileBase>>())).Throws(new Exception());
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
+
             advertController.ControllerContext = new ControllerContext(mockedContext.Object, new RouteData(), advertController);
 
             // Act & Assert
@@ -73,10 +80,17 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
 
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
             mockedAdvertService.Setup(a => a.CreateAdvert(It.IsAny<Advert>(), It.IsAny<IEnumerable<HttpPostedFileBase>>())).Throws(new Exception());
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
+
             advertController.ControllerContext = new ControllerContext(context.Object, new RouteData(), advertController);
 
             // Act
@@ -101,10 +115,17 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
 
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
             mockedAdvertService.Setup(a => a.CreateAdvert(It.IsAny<Advert>(), It.IsAny<IEnumerable<HttpPostedFileBase>>()));
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
+
             advertController.ControllerContext = new ControllerContext(context.Object, new RouteData(), advertController);
 
             // Act & Assert
@@ -120,8 +141,14 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
 
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
 
             advertController.ModelState.AddModelError("Yolo", "Yolo");
 
@@ -158,10 +185,17 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
 
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
             mockedAdvertService.Setup(a => a.CreateAdvert(It.IsAny<Advert>(), It.IsAny<IEnumerable<HttpPostedFileBase>>()));
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
+
             advertController.ControllerContext = new ControllerContext(context.Object, new RouteData(), advertController);
 
             // Act

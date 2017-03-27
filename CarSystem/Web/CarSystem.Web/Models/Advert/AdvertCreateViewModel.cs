@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using CarSystem.Web.Infrastucture.Contracts;
 
 namespace CarSystem.Web.Models.Advert
@@ -26,6 +27,8 @@ namespace CarSystem.Web.Models.Advert
         [Display(Name = "City")]
         public int CityId { get; set; }
 
+        [UIHint("MultilineText")]
+        [AllowHtml]
         public string Description { get; set; }
 
         public IEnumerable<AdvertImageViewModel> FilesToBeUploaded { get; set; }

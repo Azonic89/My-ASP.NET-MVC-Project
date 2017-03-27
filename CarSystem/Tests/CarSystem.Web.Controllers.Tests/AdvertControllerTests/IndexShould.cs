@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 
 using NUnit.Framework;
 using TestStack.FluentMVCTesting;
 using Moq;
 
-using CarSystem.Data.Models;
 using CarSystem.Data.Services.Contracts;
 using CarSystem.Web.Infrastucture.Contracts;
 using CarSystem.Web.Models.Advert;
@@ -16,15 +13,21 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
 {
     [TestFixture]
     public class IndexShould
-    {
+    {      
         [Test]
         public void Index_Should_ReturnHttpStatusCode_BadRequest_IfModelParameterIsNull()
         {
             // Arrange
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
 
             // Act &Assert
             advertController
@@ -38,8 +41,15 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
             // Arrange
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
+
             advertController.ModelState.AddModelError("Yolo", "Yolo");
 
             // Act 
@@ -55,8 +65,15 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
             // Arrange
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
+
             advertController.ModelState.AddModelError("Yolo", "Yolo");
 
             // Act and Assert
@@ -71,8 +88,15 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
             // Arrange
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
+
             advertController.Index(new AdvertSearchViewModel());
 
             // Act & Assert
@@ -88,41 +112,24 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
             // Arrange
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
+
             advertController.ModelState.AddModelError("Yolo", "Yolo");
 
             advertController.Index(new AdvertSearchViewModel());
 
             // Act and Assert
             mockedAdvertService.Verify(a => a.Search(
-                                                    It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(),
-                                                    It.IsAny<int>(), It.IsAny<decimal>(), It.IsAny<decimal>(),
-                                                    It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()), Times.Never);
-        }
-
-        [Test]
-        public void Index_Should_ReturnDefaultViewWithCorrectModel_IfThereIsNoError()
-        {
-            // Arrange
-            var adverts = new List<Advert>
-            {
-                new Advert { Id = 1, CityId = 1, Price = 100, Power = 100 }
-
-            }.AsQueryable();
-
-            var mockedAdvertService = new Mock<IAdvertService>();
-            var mockedMappingService = new Mock<IMappingService>();
-
-            mockedAdvertService.Setup(x => x.Search(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(),
-                It.IsAny<int>(), It.IsAny<decimal>(), It.IsAny<decimal>(),
-                It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(adverts);
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
-
-            // Act & Assert
-            advertController
-                .WithCallTo(x => x.Index(new AdvertSearchViewModel()))
-                .ShouldRedirectTo<Controllers.HomeController>(typeof(AdvertController).GetMethod("Index"));
+                                                    It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>(),
+                                                    It.IsAny<int?>(), It.IsAny<decimal?>(), It.IsAny<decimal?>(),
+                                                    It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>()), Times.Never);
         }
 
         [Test]
@@ -131,12 +138,18 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
             // Arrange
             var mockedMappingService = new Mock<IMappingService>();
             var mockedAdvertService = new Mock<IAdvertService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
-            mockedAdvertService.Setup(a => a.Search(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(),
-                It.IsAny<int>(), It.IsAny<decimal>(), It.IsAny<decimal>(),
-                It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Throws(new Exception());
+            mockedAdvertService.Setup(a => a.Search(It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>(),
+                It.IsAny<int?>(), It.IsAny<decimal?>(), It.IsAny<decimal?>(),
+                It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>())).Throws(new Exception());
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
 
             // Act 
             advertController.Index(new AdvertSearchViewModel());
@@ -151,12 +164,18 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
             // Arrange
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
-            mockedAdvertService.Setup(a => a.Search(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(),
-                It.IsAny<int>(), It.IsAny<decimal>(), It.IsAny<decimal>(),
-                It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Throws(new Exception());
+            mockedAdvertService.Setup(a => a.Search(It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>(),
+                It.IsAny<int?>(), It.IsAny<decimal?>(), It.IsAny<decimal?>(),
+                It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<int?>())).Throws(new Exception());
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
 
             // Act & Assert
             advertController

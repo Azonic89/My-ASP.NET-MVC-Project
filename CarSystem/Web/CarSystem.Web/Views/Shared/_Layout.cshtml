@@ -40,7 +40,10 @@
     </div>
     @if (this.TempData["Notification"] != null)
     {
-        <div class="alert alert-dismissible alert-success" role="alert">@this.TempData["Notification"]</div>
+        <div class="alert alert-dismissible alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>@this.TempData["Notification"]</strong>           
+        </div>
     }
     @Html.Partial("_CarouselPartial")
     <main>

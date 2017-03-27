@@ -19,8 +19,14 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
             // Arrange
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
 
             // Act & Assert
             advertController
@@ -34,8 +40,14 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
             // Arrange
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
 
             // Act
             advertController.Detail(1);
@@ -52,10 +64,16 @@ namespace CarSystem.Web.Controllers.Tests.AdvertControllerTests
 
             var mockedAdvertService = new Mock<IAdvertService>();
             var mockedMappingService = new Mock<IMappingService>();
+            var mockedCityService = new Mock<ICityService>();
+            var mockedVehicleModelService = new Mock<IVehicleModelService>();
 
             mockedAdvertService.Setup(a => a.GetById(It.IsAny<int?>())).Returns(nullAdvert);
 
-            var advertController = new AdvertController(mockedAdvertService.Object, mockedMappingService.Object);
+            var advertController = new AdvertController(
+                mockedAdvertService.Object,
+                mockedMappingService.Object,
+                mockedVehicleModelService.Object,
+                mockedCityService.Object);
 
             // Act & Assert
             advertController

@@ -13,6 +13,8 @@ using CarSystem.Data.Models;
 using CarSystem.Data.Services.Contracts;
 using CarSystem.Web.Infrastucture.Contracts;
 using CarSystem.Web.Models.Advert;
+using CarSystem.Web.Models.City;
+using CarSystem.Web.Models.VehicleModel;
 
 namespace CarSystem.Web.Controllers
 {
@@ -20,14 +22,24 @@ namespace CarSystem.Web.Controllers
     {
         private readonly IAdvertService advertService;
         private readonly IMappingService mappingService;
+        private readonly IVehicleModelService vehicleModelService;
+        private readonly ICityService cityService;
 
-        public AdvertController(IAdvertService advertService, IMappingService mappingService)
+        public AdvertController(
+            IAdvertService advertService,
+            IMappingService mappingService,
+            IVehicleModelService vehicleModelService,
+            ICityService cityService)
         {
             Guard.WhenArgument(advertService, nameof(advertService)).IsNull().Throw();
             Guard.WhenArgument(mappingService, nameof(mappingService)).IsNull().Throw();
+            Guard.WhenArgument(vehicleModelService, nameof(vehicleModelService)).IsNull().Throw();
+            Guard.WhenArgument(cityService, nameof(cityService)).IsNull().Throw();
 
             this.advertService = advertService;
             this.mappingService = mappingService;
+            this.vehicleModelService = vehicleModelService;
+            this.cityService = cityService;
         }
         
         [HttpGet]
@@ -63,11 +75,13 @@ namespace CarSystem.Web.Controllers
 
                 return View(adverts);
             }
+
             catch (Exception e)
             {
                 this.TempData["Notification"] = "Exception.";
 
                 return RedirectToAction("Index", "Home");
+
             }
         }
 
@@ -75,6 +89,12 @@ namespace CarSystem.Web.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            var vehicleModels = vehicleModelService.GetAllVehicleModels().ProjectTo<VehicleModelViewModel>().ToList();
+            var cities = cityService.GetAllCities().ProjectTo<CityViewModel>().ToList();
+
+            ViewBag.VehicleModels = new SelectList(vehicleModels, "Id", "Name");
+            ViewBag.Cities = new SelectList(cities, "Id", "Name");
+
             return View();
         }
 
