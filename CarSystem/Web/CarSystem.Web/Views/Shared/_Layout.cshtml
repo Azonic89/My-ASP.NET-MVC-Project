@@ -24,10 +24,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Search", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Search", "Index", "Home", new { area = "" }, null)</li>
                     @if (this.User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Create Advert", "Create", "Advert")</li>
+                        <li>@Html.ActionLink("Create Advert", "Create", "Advert", new { area = "" }, null)</li>
+                    }
+                    @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

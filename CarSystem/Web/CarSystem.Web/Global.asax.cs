@@ -13,10 +13,11 @@ namespace CarSystem.Web
     {
         protected void Application_Start()
         {
+            AreaRegistration.RegisterAllAreas();
+
             ViewEngineConfig.RegisterViewEngines(ViewEngines.Engines);
 
             DatabaseConfig.Initialize();
-            AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

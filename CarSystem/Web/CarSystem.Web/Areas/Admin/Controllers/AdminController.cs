@@ -10,6 +10,7 @@ using CarSystem.Web.Areas.Admin.Models;
 
 namespace CarSystem.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly IAdvertService advertService;
