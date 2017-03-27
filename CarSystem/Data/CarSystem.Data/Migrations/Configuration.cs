@@ -2,6 +2,8 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 
 using CarSystem.Data.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CarSystem.Data.Migrations
 {
@@ -102,7 +104,12 @@ namespace CarSystem.Data.Migrations
             //    );
             //}
 
-            if (context.Categories.Count() == 0)
+            if (!context.Roles.Any(r => r.Name == "admin"))
+            {
+                this.AddUserAndRole(context);
+            }
+
+            if (!context.Categories.Any())
             {
                 context.Categories.AddOrUpdate(c => c.Id,
                     new Category { Id = 0, Name = "Bus" },
@@ -113,7 +120,7 @@ namespace CarSystem.Data.Migrations
                 );
             }
 
-            if (context.Manufacturers.Count() == 0)
+            if (!context.Manufacturers.Any())
             {
                 context.Manufacturers.AddOrUpdate(m => m.Id,
                     new Manufacturer { Id = 1, Name = "Audi" },
@@ -125,7 +132,7 @@ namespace CarSystem.Data.Migrations
                 );
             }
 
-            if (context.VehicleModels.Count() == 0)
+            if (!context.VehicleModels.Any())
             {
                 context.VehicleModels.AddOrUpdate(v => v.Id,
                     new VehicleModel { Id = 1, Name = "A4", CategoryId = 1, ManufacturerId = 1 },
@@ -141,7 +148,7 @@ namespace CarSystem.Data.Migrations
                 );
             }
 
-            if (context.Cities.Count() == 0)
+            if (!context.Cities.Any())
             {
                 context.Cities.AddOrUpdate(c => c.Id,
                     new City { Id = 1, Name = "Sofia" },
@@ -150,6 +157,25 @@ namespace CarSystem.Data.Migrations
                     new City { Id = 4, Name = "Haskovo" }
                 );
             }
+        }
+
+        private bool AddUserAndRole(CarSystemEfDbContext context)
+        {
+            IdentityResult ir;
+            var rm = new RoleManager<IdentityRole>
+                (new RoleStore<IdentityRole>(context));
+            ir = rm.Create(new IdentityRole("admin"));
+            var um = new UserManager<User>(
+                new UserStore<User>(context));
+            var user = new User()
+            {
+                UserName = "dedoviqtAdmin@yahoo.com",
+            };
+            ir = um.Create(user, "Parolishen");
+            if (ir.Succeeded == false)
+                return ir.Succeeded;
+            ir = um.AddToRole(user.Id, "admin");
+            return ir.Succeeded;
         }
     }
 }
