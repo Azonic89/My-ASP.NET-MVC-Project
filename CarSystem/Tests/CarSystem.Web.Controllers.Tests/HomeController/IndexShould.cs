@@ -10,7 +10,6 @@ using CarSystem.Data.Models;
 using CarSystem.Data.Contracts;
 using CarSystem.Data.Services.Contracts;
 using CarSystem.Web.Infrastucture;
-using TestStack.FluentMVCTesting;
 
 namespace CarSystem.Web.Controllers.Tests.HomeController
 {

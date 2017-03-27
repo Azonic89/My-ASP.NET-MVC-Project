@@ -80,6 +80,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminControllerTests\ConstructorShould.cs" />
+    <Compile Include="AdminControllerTests\DeleteAdvertShould.cs" />
+    <Compile Include="AdminControllerTests\GetAllAdvertsShould.cs" />
+    <Compile Include="AdminControllerTests\IndexShould.cs" />
+    <Compile Include="AdminControllerTests\UpdateAdvertShould.cs" />
     <Compile Include="AdvertControllerTests\ConstructorShould.cs" />
     <Compile Include="AdvertControllerTests\CreateGetShould.cs" />
     <Compile Include="AdvertControllerTests\CreatePostShould.cs" />
