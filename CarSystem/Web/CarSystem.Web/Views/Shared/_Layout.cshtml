@@ -29,7 +29,7 @@
                     {
                         <li>@Html.ActionLink("Create Advert", "Create", "Advert", new { area = "" }, null)</li>
                     }
-                    @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
+                    @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("admin"))
                     {
                         <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
                     }
