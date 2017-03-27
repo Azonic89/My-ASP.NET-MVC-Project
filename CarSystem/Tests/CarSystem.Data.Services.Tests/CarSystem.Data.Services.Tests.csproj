@@ -59,6 +59,7 @@
     <Compile Include="AdvertServiceTests\GetAdvertsByMultipleParametersShould.cs" />
     <Compile Include="AdvertServiceTests\GetAllAdvertsByUserIdShould.cs" />
     <Compile Include="AdvertServiceTests\GetAllAdvertsShould.cs" />
+    <Compile Include="AdvertServiceTests\SearchShould.cs" />
     <Compile Include="AdvertServiceTests\UpdateShould.cs" />
     <Compile Include="CategoryServiceTests\ConstructorShould.cs" />
     <Compile Include="CategoryServiceTests\GetAllCategoriesShould.cs" />
