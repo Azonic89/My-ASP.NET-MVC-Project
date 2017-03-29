@@ -16,3 +16,20 @@
 | Name              | Academy Username  |
 |-------------------|-------------------|
 |Vasil Penev        |__Azonic__         |
+
+# Car System
+  - Online Car System for adverts!
+-----------------------------------------------------------------------------------------------------------------------
+
+## ASP.NET MVC course project
+  - Ioc container - Ninject 
+  - Testing - NUnit, Moq, TestStack.FluentMVCTesting
+  - Validation - Bytes2you.Validation
+  - ORM - EntityFramework
+  - Data base - SQL Server
+  - Styles - Bootstrap 
+  - Continuous Integration - AppVeyor & Jenkins
+  - Continuous Integration and Deployment - Jenkins
+  - Code Coverage - Coveralls
+  - Hosting - Azure
+-----------------------------------------------------------------------------------------------------------------------
