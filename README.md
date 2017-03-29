@@ -21,6 +21,10 @@
   - Online Car System for adverts!
 -----------------------------------------------------------------------------------------------------------------------
 
+## Functionalities
+ - Regular Users can add adverts with Images and search for adverts with detail View.
+ - Admin can Manage Adverts with Ajax using JqGrid.
+ 
 -----------------------------------------------------------------------------------------------------------------------
 
 ![Initial](./ScreenShots/SiteOne.jpg)
