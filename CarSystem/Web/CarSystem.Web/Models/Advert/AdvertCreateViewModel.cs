@@ -10,6 +10,8 @@ namespace CarSystem.Web.Models.Advert
 {
     public class AdvertCreateViewModel : IMapFrom<Data.Models.Advert>
     {
+        [DataType(DataType.Text)]
+        [AllowHtml]
         public string Title { get; set; }
 
         [Display(Name = "Vehicle Model")]

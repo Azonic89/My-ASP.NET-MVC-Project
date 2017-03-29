@@ -15,6 +15,7 @@ using CarSystem.Web.Infrastucture.Contracts;
 using CarSystem.Web.Models.Advert;
 using CarSystem.Web.Models.City;
 using CarSystem.Web.Models.VehicleModel;
+using Microsoft.Security.Application;
 
 namespace CarSystem.Web.Controllers
 {
@@ -43,6 +44,7 @@ namespace CarSystem.Web.Controllers
         }
         
         [HttpGet]
+        [ValidateInput(false)]
         public ActionResult Index(AdvertSearchViewModel model)
         {
             if (model == null)
@@ -71,7 +73,7 @@ namespace CarSystem.Web.Controllers
                     model.MinDistanceCoverage,
                     model.MaxDistanceCoverage)
                  .OrderBy(a => a.Id)
-                 .ProjectTo<AdvertDetailViewModel>().ToList();
+                 .ProjectTo<AdvertDetailViewModel>().ToList();                
 
                 return View(adverts);
             }
@@ -101,6 +103,7 @@ namespace CarSystem.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
+        [ValidateInput(false)]
         public ActionResult Create(AdvertCreateViewModel model, IEnumerable<HttpPostedFileBase> uploadedFiles)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
@@ -110,7 +113,7 @@ namespace CarSystem.Web.Controllers
                 return this.View(model);
             }
 
-            var advert = new Advert()
+            var advert = new Advert
             {
                 Title = model.Title,
                 VehicleModelId = model.VehicleModelId,
@@ -125,6 +128,8 @@ namespace CarSystem.Web.Controllers
 
             try
             {
+                advert.Title = Sanitizer.GetSafeHtmlFragment(model.Title);
+                advert.Description = Sanitizer.GetSafeHtmlFragment(model.Description);
                 this.advertService.CreateAdvert(advert, uploadedFiles);
             }
             catch (Exception)
