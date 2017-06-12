@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 using CarSystem.Data.Models.Contracts;
 using CarSystem.ValidationConstants;
 

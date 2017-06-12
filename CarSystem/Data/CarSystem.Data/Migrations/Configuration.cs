@@ -1,8 +1,10 @@
 using System.Data.Entity.Migrations;
 using System.Linq;
-using CarSystem.Data.Models;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+
+using CarSystem.Data.Models;
 
 namespace CarSystem.Data.Migrations
 {
@@ -159,22 +161,24 @@ namespace CarSystem.Data.Migrations
 
         private bool AddUserAndRole(CarSystemEfDbContext context)
         {
-            IdentityResult ir;
-            var rm = new RoleManager<IdentityRole>
-                (new RoleStore<IdentityRole>(context));
-            ir = rm.Create(new IdentityRole("admin"));
-            var um = new UserManager<User>(
-                new UserStore<User>(context));
-            var user = new User()
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var indentityResult = roleManager.Create(new IdentityRole("admin"));
+            var userManager = new UserManager<User>(new UserStore<User>(context));
+
+            var user = new User
             {
                 UserName = "dedoviqtAdmin@yahoo.com",
             };
-            ir = um.Create(user, "Parolishen");
-            if (ir.Succeeded == false)
-                return ir.Succeeded;
-            ir = um.AddToRole(user.Id, "admin");
-            return ir.Succeeded;
-        }
 
+            indentityResult = userManager.Create(user, "Parolishen");
+            if (indentityResult.Succeeded == false)
+            {
+                return indentityResult.Succeeded;
+
+            }
+            indentityResult = userManager.AddToRole(user.Id, "admin");
+
+            return indentityResult.Succeeded;
+        }
     }
 }

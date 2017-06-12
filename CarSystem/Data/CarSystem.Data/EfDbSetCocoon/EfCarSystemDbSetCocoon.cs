@@ -1,7 +1,9 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+
 using Bytes2you.Validation;
+
 using CarSystem.Data.Contracts;
 
 namespace CarSystem.Data.EfDbSetCocoon

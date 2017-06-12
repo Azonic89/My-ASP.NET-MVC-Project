@@ -4,9 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 
 using AutoMapper.QueryableExtensions;
+using Microsoft.Security.Application;
+using Microsoft.AspNet.Identity;
 using Bytes2you.Validation;
 
 using CarSystem.Data.Models;
@@ -15,7 +16,6 @@ using CarSystem.Web.Infrastucture.Contracts;
 using CarSystem.Web.Models.Advert;
 using CarSystem.Web.Models.City;
 using CarSystem.Web.Models.VehicleModel;
-using Microsoft.Security.Application;
 
 namespace CarSystem.Web.Controllers
 {
