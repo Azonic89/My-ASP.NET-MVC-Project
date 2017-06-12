@@ -19,10 +19,5 @@ namespace CarSystem.Data.EfDbSetCocoon
         {
             return this.carSystemEfDbContext.SaveChanges();
         }
-
-        public void Dispose()
-        {
-
-        }
     }
 }
