@@ -1,12 +1,10 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-
 using Bytes2you.Validation;
-
 using CarSystem.Data.Contracts;
 
-namespace CarSystem.Data.Repositories
+namespace CarSystem.Data.EfDbSetCocoon
 {
     public class EfCarSystemDbSetCocoon<T> : IEfCarSystemDbSetCocoon<T> where T : class
     {
@@ -85,11 +83,6 @@ namespace CarSystem.Data.Repositories
             DbEntityEntry entry = this.Context.Entry(entity);
 
             entry.State = EntityState.Detached;
-        }
-
-        public void Dispose()
-        {
-            this.Context.Dispose();
         }
     }
 }

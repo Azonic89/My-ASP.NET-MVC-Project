@@ -7,7 +7,7 @@
     <link rel="icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/jqgrid")
-    @Scripts.Render("~/bundles/jquery")
+
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -42,7 +42,7 @@
     {
         <div class="alert alert-dismissible alert-success" role="alert">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>@this.TempData["Notification"]</strong>           
+            <strong>@this.TempData["Notification"]</strong>
         </div>
     }
     @Html.Partial("_CarouselPartial")
@@ -52,7 +52,8 @@
         </div>
     </main>
     @Html.Partial("_FooterPartial")
-    
+
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/gridlocEn")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

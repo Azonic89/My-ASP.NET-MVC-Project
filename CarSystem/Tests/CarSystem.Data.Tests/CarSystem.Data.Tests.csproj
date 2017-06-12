@@ -59,14 +59,12 @@
     <Compile Include="CarSystemDbContext.Tests\ConstructorShould.cs" />
     <Compile Include="CarSystemDbContext.Tests\CreateShould.cs" />
     <Compile Include="EfCarSystemDbContextSaveChanges.Tests\ConstructorShould.cs" />
-    <Compile Include="EfCarSystemDbContextSaveChanges.Tests\DisposeShould.cs" />
     <Compile Include="EfCarSystemDbContextSaveChanges.Tests\SaveChangesShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\AddShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\AllShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\ConstructorShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\DeleteShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\DetachShould.cs" />
-    <Compile Include="EfRepoCarSystemData.Tests\DisposeShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\GetByIdShould.cs" />
     <Compile Include="EfRepoCarSystemData.Tests\UpdateShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

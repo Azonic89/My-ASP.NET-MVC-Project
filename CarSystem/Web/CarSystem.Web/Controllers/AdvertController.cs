@@ -61,6 +61,7 @@ namespace CarSystem.Web.Controllers
 
             try
             {
+                // FIX THIIS
                 var adverts = advertService.Search(
                     model.VehicleModelId,
                     model.CityId,

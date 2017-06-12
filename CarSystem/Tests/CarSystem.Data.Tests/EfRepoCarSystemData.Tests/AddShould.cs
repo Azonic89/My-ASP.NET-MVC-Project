@@ -7,8 +7,8 @@ using NUnit.Framework;
 using Moq;
 
 using CarSystem.Data.Contracts;
+using CarSystem.Data.EfDbSetCocoon;
 using CarSystem.Data.Models.Contracts;
-using CarSystem.Data.Repositories;
 
 namespace CarSystem.Data.Tests.EfRepoCarSystemData.Tests
 {

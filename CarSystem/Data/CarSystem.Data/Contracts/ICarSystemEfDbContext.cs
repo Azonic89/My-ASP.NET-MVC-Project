@@ -1,12 +1,11 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
 using CarSystem.Data.Models;
 
 namespace CarSystem.Data.Contracts
 {
-    public interface ICarSystemEfDbContext : IDisposable
+    public interface ICarSystemEfDbContext
     {
         IDbSet<User> Users { get; set; }
 

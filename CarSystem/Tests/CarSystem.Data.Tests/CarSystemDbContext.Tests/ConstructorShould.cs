@@ -18,7 +18,7 @@ namespace CarSystem.Data.Tests.CarSystemDbContext.Tests
         }
 
         [Test]
-        public void Constructor_Should_Return_InstanceOfIPetsWonderlandDbContext()
+        public void Constructor_Should_Return_InstanceOfICarSystemEfDbContext()
         {
             // Arrange & Act
             var context = new Data.CarSystemEfDbContext();

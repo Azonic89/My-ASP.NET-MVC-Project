@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace CarSystem.Data.Contracts
 {
-    public interface IEfCarSystemDbSetCocoon<T> : IDisposable where T : class
+    public interface IEfCarSystemDbSetCocoon<T> where T : class
     {
         IQueryable<T> All();
 
